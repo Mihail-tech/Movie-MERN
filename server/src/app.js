@@ -3,6 +3,7 @@ import path from 'path';
 import createError from 'http-errors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import fileUploader from 'express-fileupload';
 
 import connectToMongoose from './models/db';
 import configurePassport from './middleware/passport';
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('public'));
+app.use(fileUploader({}));
 
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);

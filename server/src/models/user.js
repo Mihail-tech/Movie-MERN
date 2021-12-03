@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
     type: mongoose.SchemaTypes.Mixed,
     required: true,
   },
+  pic: {
+    type: String,
+    default: "https://res.cloudinary.com/https-www-itechart-by/image/upload/v1638167523/default_icons_v4y4z2.jpg"
+  }
 });
 
 userSchema.pre('save', async function() {

@@ -8,7 +8,7 @@ export const postSetting = async (req, res, next) => {
             user.name = req.body.name || user.name;
             user.email = req.body.email || user.email;
             // user.password = req.body.password || user.password;
-            // user.pic = req.body.pic || user.pic;
+            user.pic = req.body.pic || user.pic;
         };
 
         if(req.body.password) {
@@ -22,7 +22,7 @@ export const postSetting = async (req, res, next) => {
              username: updateUser.username,
              email: updateUser.email,
              password: updateUser.password,
-            // pic: updateUser.pic,
+             pic: updateUser._id,
          })
 
     } catch (err) {

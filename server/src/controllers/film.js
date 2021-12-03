@@ -57,3 +57,17 @@ export const getFilms = async (req, res, next) => {
     next(err);
   }
 };
+
+
+export const film = async (req, res) => {
+  try {
+    const id = req.params.id
+    console.log(req.params)
+  const data = await Film.findById({_id:id});
+  res.json(data);
+  } catch (error) {
+    res.status(400).json({message:error})
+  }
+}
+
+// _id: mongoose.Types.ObjectId()

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const filmSchema = new mongoose.Schema({
-  _id: mongoose.SchemaTypes.ObjectId,
+  // _id: mongoose.SchemaTypes.ObjectId,
   title: {
     type: String,
     required: true,

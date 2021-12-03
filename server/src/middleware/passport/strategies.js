@@ -18,6 +18,8 @@ export const localStrategy = new LocalStrategy(async (username, password, done) 
     const passportUser = {
       username: user.username,
       email: user.email,
+      password: user.password,
+      pic: user.pic,
       token: user.generateJwt(),
     };
     return done(null, passportUser);
