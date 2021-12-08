@@ -3,7 +3,7 @@ import User from '../models/user'
 export const postSetting = async (req, res, next) => {
     try {
         const user = await User.findById(req.params._id);
-
+console.log(user)
         if(user) {
             user.name = req.body.name || user.name;
             user.email = req.body.email || user.email;

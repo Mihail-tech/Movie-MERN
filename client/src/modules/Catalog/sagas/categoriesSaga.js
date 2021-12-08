@@ -15,10 +15,10 @@ function* categoriesWorker(action) {
   } catch (err) {
     yield put(getCategoriesFailed(err.response.data));
   }
-}
+};
 
 function* categoriesWatcher() {
   yield takeLatest('CATEGORIES_GET_REQUESTED', categoriesWorker);
-}
+};
 
 export default categoriesWatcher;

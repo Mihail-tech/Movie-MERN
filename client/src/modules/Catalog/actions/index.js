@@ -12,7 +12,9 @@ export const getFilmRequested = createAction('FILM_GET_REQUESTED');
 export const getFilmSucceeded = createAction('FILM_GET_SUCCEEDED');
 export const getFilmFailed = createAction('FILM_GET_FAILED');
 
-export const commentPost = createAction('COMMENT_POST');
+export const commentRequested = createAction('COMMENT_REQUESTED');
+export const commentSucceeded = createAction('COMMENT_SUCCEEDED');
+export const commentFailed = createAction('COMMENT_FAILED');
 
 export const cleanFilms = createAction('FILMS_CLEAN');
 

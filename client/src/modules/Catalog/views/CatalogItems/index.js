@@ -1,15 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InfiniteLoader from 'react-infinite-loader';
-import {Button, Typography, Divider, Container, CardMedia, CardContent, Card, Link, ButtonBase} from '@material-ui/core/';
+import {
+  Button,
+  Typography,
+  Divider,
+  Container,
+  CardMedia,
+  CardContent,
+  Card,
+  Link
+} from '@material-ui/core/';
 
 import { useStyles } from './styles';
 import { ReactComponent as Star } from '../../../../static/images/star-solid.svg';
 
-const CatalogItems = (props) => {
+const CatalogItems = props => {
   const classes = useStyles();
-  const {loading, films, hasMore, handleNextPage} = props;
- console.log(props)
+  const { loading, films, hasMore, handleNextPage } = props;
   return loading && !films ? (
     <Typography className={classes.loading}>Loading...</Typography>
   ) : (
@@ -22,16 +30,14 @@ const CatalogItems = (props) => {
             <Typography className={classes.subtitle1}>{film.year}</Typography>
             <Typography className={classes.text}>{film.description}</Typography>
             <Divider className={classes.divider} light />
-            {film.rating &&
-            <Typography className={classes.subtitle2}>
-              <Star className={classes.star} />
-              {film.rating}
-            </Typography>
-            }
-            <Link href={`/films/${film._id}`} >
-              <Button>
-                more
-              </Button>
+            {film.rating && (
+              <Typography className={classes.subtitle2}>
+                <Star className={classes.star} />
+                {film.rating}
+              </Typography>
+            )}
+            <Link href={`/films/${film._id}`} className={classes.button}>
+              <Button >more</Button>
             </Link>
           </CardContent>
         </Card>
@@ -44,16 +50,16 @@ const CatalogItems = (props) => {
 CatalogItems.propTypes = {
   films: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      year: PropTypes.number.isRequired,
+      title: PropTypes.string,
+      description: PropTypes.string,
+      year: PropTypes.number,
       rating: PropTypes.number,
-      category: PropTypes.object.isRequired,
+      category: PropTypes.object,
     })
   ),
-  loading: PropTypes.bool.isRequired,
-  hasMore: PropTypes.bool.isRequired,
-  handleNextPage: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  hasMore: PropTypes.bool,
+  handleNextPage: PropTypes.func,
 };
 
 export default CatalogItems;

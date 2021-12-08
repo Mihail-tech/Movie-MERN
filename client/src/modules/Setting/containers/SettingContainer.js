@@ -17,14 +17,14 @@ const SettingContainer = props => {
   // const submitHandler = (event) => {
   //     event.preventDefault();
   // };
-  const handleChange = e => {
-    const name = e.target.name;
-    const value = e.target.value;
 
-    name === 'username' && setUsername(value);
-    name === 'email' && setEmail(value);
-    name === 'password' && setPassword(value);
-  };
+//   const handleChange = e => {
+//     const name = e.target.name;
+//     const value = e.target.value;
+
+//     name === 'username' && setUsername(value);
+//     name === 'email' && setEmail(value);
+//   };
 
   // const handleSubmit = () => {
   //     props.updateUser();
@@ -38,35 +38,33 @@ const SettingContainer = props => {
   //       formData.append('file', file, file.name);
   //     }
   //   };
-  const handleFileUpdate = (pic, e) => {
-    // if (pic.type === 'image/jpeg' || pic.type === 'image/png') {
+  const handleFileUpdate = (e) => {
       const file = e.target.files[0];
 
       const formData = new FormData();
-      formData.append('pic', file, file.name);
+      formData.append('file', file, file);
 
       props.updateAvatar(formData);
 
       e.target.files = null;
-    // }
   };
 
   const handleUpdate = () => {
+
     props.updateUser({
       username,
       email,
       password,
     });
-    history.push('/setting');
   };
 
   const profileProps = {
     username,
     email,
     password,
-    pic: props.pic,
+    pic,
     handleUpdate,
-    handleChange,
+    // handleChange,
     handleFileUpdate,
     // updatePic,
   };

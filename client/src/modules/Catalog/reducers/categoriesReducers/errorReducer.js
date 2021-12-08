@@ -1,8 +1,9 @@
 import { handleActions } from 'redux-actions';
+import {getCategoriesFailed} from '../../actions';
 
 const errorReducer = handleActions(
   {
-    CATEGORIES_GET_FAILED: (state, action) => action.payload,
+    [getCategoriesFailed]: (state, action) => action.payload,
   },
   ''
 );

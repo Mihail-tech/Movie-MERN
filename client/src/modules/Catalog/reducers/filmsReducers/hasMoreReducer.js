@@ -1,9 +1,10 @@
 import { handleActions } from 'redux-actions';
+import {updateHasMore, cleanFilms} from '../../actions';
 
 const hasMoreReducer = handleActions(
   {
-    HAS_MORE_UPDATE: (state, action) => action.payload,
-    FILMS_CLEAN: (state, action) => true,
+    [updateHasMore]: (state, action) => action.payload,
+    [cleanFilms]: (state, action) => true,
   },
   true
 );

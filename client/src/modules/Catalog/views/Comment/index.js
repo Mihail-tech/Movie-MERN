@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Typography, Avatar, TextField } from '@material-ui/core';
 
-import {commentPost} from '../actions';
+import {commentSucceeded} from '../../actions';
 
 const Comment = (props) => {
   const classes = useStyles();
@@ -16,7 +16,7 @@ const Comment = (props) => {
 
 const handleComment = () => {
     const finalComment = `${username}: ${comment}`;
-    dispatch(commentPost(finalComment,
+    dispatch(commentSucceeded(finalComment,
         // надо передать id вторым параметром
         ))
 }
@@ -45,7 +45,7 @@ const handleComment = () => {
       ))}
       <div>
       <TextField value={props.comment} onChange={props.handleChange} maxLength='255' placeholder='write comment' />
-      <TextField fullWidth  variant="outlined" label="Comment" multiline value={comment} onChange={(e) => setComment(e.target.value)}/>
+      <TextField fullWidth  variant="outlined" label="Comment" multiline value={comment} onChange={(e) => setComment(e.target.value)} maxLength='255'/>
       <Button type='submit' className={classes.updateButton} disabled={!comment} onClick={handleComment} >
                 Send
             </Button>
@@ -56,6 +56,7 @@ const handleComment = () => {
 
 Comment.propTypes = {
   username: PropTypes.string,
+  handleComment: PropTypes.func,
 };
 
 export default Comment;

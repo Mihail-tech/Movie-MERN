@@ -1,8 +1,9 @@
 import { handleActions } from 'redux-actions';
+import {getCategoriesSucceeded} from '../../actions';
 
 const itemsReducer = handleActions(
   {
-    CATEGORIES_GET_SUCCEEDED: (state, action) => action.payload,
+    [getCategoriesSucceeded]: (state, action) => action.payload,
   },
   []
 );

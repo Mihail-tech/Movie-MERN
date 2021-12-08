@@ -70,4 +70,7 @@ export const useStyles = makeStyles(theme => ({
     height: '14px',
     margin: `0 4px`,
   },
+  button: {
+    textDecoration: 'overline',
+  }
 }));

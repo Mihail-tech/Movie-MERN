@@ -11,6 +11,6 @@ const commentPost = handleActions({
     })
 },
     initialState
-)
+);
 
 export default commentPost;

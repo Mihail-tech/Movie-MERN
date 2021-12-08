@@ -1,15 +1,12 @@
 import {handleActions} from 'redux-actions';
-
-// const initialState = {
-
-// }
-
+import {getFilmSucceeded, getFilmFailed} from '../../actions'
 
 const filmReducer = handleActions (
     {
-        FILM_GET_REQUESTED: (state, action) => state || [],
-        FILM_GET_SUCCEEDED: (state, action) => (state ? [ ...action.payload] : action.payload),
-        FILM_GET_FAILED: (state, action) => [],
+        [getFilmSucceeded]: (state, action) => {
+        return action.payload
+        },
+        [getFilmFailed]: (state, action) => [],
     },
     []
 );

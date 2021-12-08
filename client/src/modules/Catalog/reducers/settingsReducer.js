@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import {updateCatalogSettings} from '../actions';
 
 const initialState = {
   page: 1,
@@ -8,7 +9,7 @@ const initialState = {
 
 const settingsReducer = handleActions(
   {
-    CATALOG_SETTINGS_UPDATE: (state, action) => ({
+    [updateCatalogSettings]: (state, action) => ({
       ...state,
       ...action.payload,
     }),

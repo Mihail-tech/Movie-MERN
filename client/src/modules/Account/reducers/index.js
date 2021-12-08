@@ -1,4 +1,6 @@
 import { handleActions } from 'redux-actions';
+import {unsetCurrentUser} from '../actions';
+import {loginUserSucceeded} from '../../Login/actions';
 
 const initialState = {
   username: '',
@@ -10,15 +12,10 @@ const initialState = {
 
 const accountReducer = handleActions(
   {
-    USER_LOGIN_SUCCEEDED: (state, action) => ({
-      id: action.payload.id,
-      username: action.payload.username,
-      email: action.payload.email,
-      password: action.payload.password,
-      pic: action.payload.pic,
-      token: action.payload.token,
+    [loginUserSucceeded]: (state, action) => ({
+      ...action.payload
     }),
-    CURRENT_USER_UNSET: (state, action) => initialState,
+    [unsetCurrentUser]: (state, action) => initialState,
   },
   initialState
 );

@@ -1,10 +1,11 @@
 import { handleActions } from 'redux-actions';
+import {getFilmsRequested, getFilmsSucceeded, cleanFilms } from '../../actions';
 
 const itemsReducer = handleActions(
   {
-    FILMS_GET_REQUESTED: (state, action) => state || [],
-    FILMS_GET_SUCCEEDED: (state, action) => (state ? [...state, ...action.payload] : action.payload),
-    FILMS_CLEAN: (state, action) => [],
+    [getFilmsRequested]: (state, action) => state || [],
+    [getFilmsSucceeded]: (state, action) => (state ? [...state, ...action.payload] : action.payload),
+    [cleanFilms]: (state, action) => [],
   },
   []
 );

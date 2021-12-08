@@ -4,13 +4,13 @@ import { setting } from '../../../api/requests';
 import { history } from '../../../redux/store';
 import { userUpdateSucceeded, userUpdateFailed } from '../action';
 
-// const getToken = state => state.account.token;
+const getToken = state => state.account.token;
 
 function* settingWorker(action) {
   try {
-    // const token = yield select(getToken);
+    const token = yield select(getToken);
 
-    const response = yield call(setting, action.payload);
+    const response = yield call(setting, token, action.payload);
     yield put(
       userUpdateSucceeded({
         username: response.data.username,

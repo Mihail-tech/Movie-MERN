@@ -5,9 +5,9 @@ import LoginSaga from '../modules/Login/sagas';
 import FilmsSaga from '../modules/Catalog/sagas/filmsSaga';
 import CategoriesSaga from '../modules/Catalog/sagas/categoriesSaga';
 import SettingSaga from '../modules/Setting/sagas';
-import filmSaga from '../modules/Catalog/sagas/filmSaga';
-import commentSaga from '../modules/Catalog/sagas/commentSaga';
+import FilmSaga from '../modules/Catalog/sagas/filmSaga';
+import CommentSaga from '../modules/Catalog/sagas/commentSaga';
 
 export default function* rootSaga() {
-  yield all([RegisterSaga(), LoginSaga(), CategoriesSaga(), FilmsSaga(), SettingSaga(), filmSaga(), commentSaga() ]);
+  yield all([RegisterSaga(), LoginSaga(), CategoriesSaga(), FilmsSaga(), SettingSaga(), FilmSaga(), CommentSaga()]);
 }

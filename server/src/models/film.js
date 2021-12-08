@@ -19,6 +19,10 @@ const filmSchema = new mongoose.Schema({
     required: false,
     min: 0,
     max: 10,
+  },
+  comment: {
+    type: String,
+    default:[]
   }
 });
 

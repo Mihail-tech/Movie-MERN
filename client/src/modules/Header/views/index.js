@@ -7,7 +7,7 @@ import logo from '../../../static/images/favicon-196.png';
 
 const Header = (props) => {
   const classes = useStyles();
-  const {handleMain, pic, username, logOut, handleClick} = props;
+  const {handleMain, pic, username, logOut} = props;
 
   return (
     <AppBar position='static'>
@@ -34,7 +34,7 @@ const Header = (props) => {
 
 Header.propTypes = {
   username: PropTypes.string,
-  logOut: PropTypes.func.isRequired,
+  logOut: PropTypes.func,
 };
 
 export default Header;

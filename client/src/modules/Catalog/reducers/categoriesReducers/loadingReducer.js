@@ -1,10 +1,11 @@
 import { handleActions } from 'redux-actions';
+import {getCategoriesRequested, getCategoriesSucceeded, getCategoriesFailed} from '../../actions';
 
 const loadingReducer = handleActions(
   {
-    CATEGORIES_GET_REQUESTED: (state, action) => true,
-    CATEGORIES_GET_SUCCEEDED: (state, action) => false,
-    CATEGORIES_GET_FAILED: (state, action) => false,
+    [getCategoriesRequested]: (state, action) => true,
+    [getCategoriesSucceeded]: (state, action) => false,
+    [getCategoriesFailed]: (state, action) => false,
   },
   false
 );

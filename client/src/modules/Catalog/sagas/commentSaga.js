@@ -1,7 +1,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
 import { catalog } from '../../../api/requests';
-import {commentPost} from '../actions';
+import {commentSucceeded, commentFailed} from '../actions';
 
 const getToken = state => state.account.token;
 
@@ -11,15 +11,15 @@ function* commentWorker(action) {
 
     const response = yield call(catalog.comment, token, action.payload);
     console.log(response.data)
-    yield put(commentPost(response.data));
+    yield put(commentSucceeded(response.data));
 
   } catch (err) {
-    yield put(commentPost(err.response.data));
+    yield put(commentFailed(err.response.data));
   }
-}
+};
 
 function* commentWatcher() {
-  yield takeLatest('COMMENT_POST', commentWorker);
-}
+  yield takeLatest('COMMENT_REQUESTED', commentWorker);
+};
 
 export default commentWatcher;

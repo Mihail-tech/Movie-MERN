@@ -23,11 +23,11 @@ function* filmsWorker(action) {
   } catch (err) {
     yield put(getFilmsFailed(err.response.data));
   }
-}
+};
 
 function* filmsWatcher() {
   yield takeLatest('FILMS_GET_REQUESTED', filmsWorker);
-}
+};
 
 
 export default filmsWatcher;

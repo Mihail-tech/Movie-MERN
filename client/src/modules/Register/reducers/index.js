@@ -1,22 +1,26 @@
 import { handleActions } from 'redux-actions';
 
+import {registerUserRequested, registerUserSucceeded, registerUserFailed} from '../actions';
+
+const initialState = {
+  processing: false,
+    errors: [],
+}
+
 const registerReducer = handleActions(
   {
-    USER_REGISTER_REQUESTED: (state, action) => ({
+    [registerUserRequested]: (state, action) => ({
       processing: true,
     }),
-    USER_REGISTER_SUCCEEDED: (state, action) => ({
+    [registerUserSucceeded]: (state, action) => ({
       processing: false,
     }),
-    USER_REGISTER_FAILED: (state, action) => ({
+    [registerUserFailed]: (state, action) => ({
       processing: false,
       errors: [...action.payload],
     }),
   },
-  {
-    processing: false,
-    errors: [],
-  }
+  initialState
 );
 
 export default registerReducer;

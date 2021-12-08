@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Typography, TextField, Select, MenuItem, InputLabel, FormControl, Container, Button, Box} from '@material-ui/core/';
+import {Typography, TextField, Select, MenuItem, InputLabel, FormControl, Container} from '@material-ui/core/';
 
 import { useStyles } from './styles';
 
 const CatalogMenu = (props) => {
   const classes = useStyles();
-  const {loading, handleInput, sortValues, handleChange, categories, pressedButton,  } = props;
+  const {loading, handleInput, sortValues, handleChange  } = props;
 
   return loading ? (
     <Typography className={classes.loading}>Loading...</Typography>
@@ -52,17 +52,10 @@ const CatalogMenu = (props) => {
         </FormControl>
       </Container>
 
-      <Box className={classes.menuCategories}>
+      
         <Typography className={classes.title}>Categories</Typography>
-        {categories.map((category, index) => (
-          <Button
-            key={index}
-            className={`${classes.category} ${pressedButton === index ? classes.active : ''}`}
-            onClick={() => props.handleClick(category._id, index)}>
-            {category.title}
-          </Button>
-        ))}
-      </Box>
+        
+      
     </Container>
   );
 };
@@ -70,19 +63,19 @@ const CatalogMenu = (props) => {
 CatalogMenu.propTypes = {
   categories: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      title: PropTypes.string,
+      description: PropTypes.string,
     })
   ),
   sortValues: PropTypes.shape({
-    sort: PropTypes.string.isRequired,
-    order: PropTypes.number.isRequired,
+    sort: PropTypes.string,
+    order: PropTypes.number,
   }),
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   pressedButton: PropTypes.number,
-  handleInput: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  handleInput: PropTypes.func,
+  handleChange: PropTypes.func,
+  handleClick: PropTypes.func,
 };
 
 export default CatalogMenu;

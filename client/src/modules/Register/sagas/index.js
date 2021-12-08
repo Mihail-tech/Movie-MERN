@@ -9,7 +9,6 @@ function* registerWorker(action) {
     const response = yield call(auth.register, action.payload);
     yield put(
       registerUserSucceeded({
-        id: response.data.id,
         username: response.data.username,
         email: response.data.email,
         password: response.data.password,

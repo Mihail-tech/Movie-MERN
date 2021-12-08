@@ -1,30 +1,45 @@
 import { handleActions } from 'redux-actions';
 
+import {
+  userUpdateRequested,
+  userUpdateSucceeded,
+  userUpdateFailed,
+  avatarUpdateRequested,
+  avatarUpdateSucceeded,
+  avatarUpdateFailed,
+} from '../action';
+
 const initialState = {
   processing: false,
-  errors: []
-}
+  errors: [],
+};
 
 const settingReducer = handleActions(
   {
-    USER_UPDATE_REQUESTED: (state, action) => ({
+    [userUpdateRequested]: (state, action) => ({
       state,
       processing: true,
     }),
-    USER_UPDATE_SUCCEEDED: (state, action) => ({
-      processing: true, ...action.payload
+    [userUpdateSucceeded]: (state, action) => ({
+      processing: true,
+      ...action.payload,
     }),
-    USER_UPDATE_FAILED: (state, action) => ({
+    [userUpdateFailed]: (state, action) => ({
       processing: false,
       errors: [...action.payload],
     }),
-    AVATAR_UPDATE_REQUESTED: (state, action) => ({
+    [avatarUpdateRequested]: (state, action) => ({
       state,
       processing: true,
     }),
-    AVATAR_UPDATE: (state, action) => ({
-      processing: true, ...action.payload
-    })
+    [avatarUpdateSucceeded]: (state, action) => ({
+      processing: true,
+      ...action.payload,
+    }),
+    [avatarUpdateFailed]: (state, action) => ({
+      processing: false,
+      errors: [...action.payload],
+    }),
   },
   initialState
 );

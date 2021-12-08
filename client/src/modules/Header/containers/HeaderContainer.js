@@ -1,12 +1,11 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import Header from '../views';
 import { unsetCurrentUser } from '../../Account/actions';
 import { history } from '../../../redux/store';
 
-const HeaderContainer = (props) => {
-
+const HeaderContainer = props => {
   const [open, setOpen] = useState(true);
 
   const handleClick = () => {
@@ -20,8 +19,16 @@ const HeaderContainer = (props) => {
 
   const handleMain = () => history.push('/catalog');
 
-  return <Header username={props.username} pic={props.pic} logOut={handleLogOut} handleMain={handleMain} handleClick={handleClick} />;
-}
+  return (
+    <Header
+      username={props.username}
+      pic={props.pic}
+      logOut={handleLogOut}
+      handleMain={handleMain}
+      handleClick={handleClick}
+    />
+  );
+};
 
 const mapStateToProps = state => ({
   username: state.account.username,
@@ -32,7 +39,4 @@ const mapDispatchToProps = dispatch => ({
   logoutUser: () => dispatch(unsetCurrentUser()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HeaderContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

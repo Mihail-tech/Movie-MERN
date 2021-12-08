@@ -1,4 +1,3 @@
-
 const PublicLayout = (props) => {
   return props.children;
 };

@@ -1,16 +1,16 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {Container} from '@material-ui/core/';
+import { Container } from '@material-ui/core/';
 
 import { useStyles } from './styles';
 import { ProtectedLayout } from '../../../../layouts';
 import CatalogMenuContainer from '../../containers/CatalogMenuContainer';
 import CatalogItemsContainer from '../../containers/CatalogItemsContainer';
 
-const Catalog = (props) => {
+const Catalog = props => {
   const classes = useStyles();
-  const {handleSettings, handleNextPage} = props;
+  const { handleSettings, handleNextPage } = props;
 
   return props.error ? (
     <Redirect to='/error' />
@@ -28,8 +28,8 @@ const Catalog = (props) => {
 
 Catalog.propTypes = {
   error: PropTypes.string,
-  handleSettings: PropTypes.func.isRequired,
-  handleNextPage: PropTypes.func.isRequired,
+  handleSettings: PropTypes.func,
+  handleNextPage: PropTypes.func,
 };
 
 export default Catalog;

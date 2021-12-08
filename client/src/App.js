@@ -8,7 +8,7 @@ import LoginContainer from './modules/Login/containers/LoginContainer';
 import CatalogContainer from './modules/Catalog/containers/CatalogContainer';
 import ErrorContainer from './modules/Error/containers/ErrorContainer';
 import SettingContainer from './modules/Setting/containers/SettingContainer';
-import currentFilmContainer from './modules/Catalog/containers/CurrentFilmContainer';
+import CurrentFilmContainer from './modules/Catalog/containers/CurrentFilmContainer';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Route path='/catalog' component={CatalogContainer} />
         <Route path='/error' component={ErrorContainer} />
         <Route path='/setting' component={SettingContainer} />
-        <Route path ='/films/:id' component={currentFilmContainer} />
+        <Route path ='/films/:id' component={CurrentFilmContainer} />
         <Redirect to='/login' />
       </Switch>
     </ConnectedRouter>

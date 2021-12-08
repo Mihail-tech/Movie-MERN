@@ -1,11 +1,12 @@
 import { handleActions } from 'redux-actions';
+import {getFilmsRequested, getFilmsSucceeded, getFilmsFailed, cleanFilms } from '../../actions';
 
 const loadingReducer = handleActions(
   {
-    FILMS_GET_REQUESTED: (state, action) => true,
-    FILMS_GET_SUCCEEDED: (state, action) => false,
-    FILMS_GET_FAILED: (state, action) => false,
-    FILMS_CLEAN: (state, action) => false,
+    [getFilmsRequested]: (state, action) => true,
+    [getFilmsSucceeded]: (state, action) => false,
+    [getFilmsFailed]: (state, action) => false,
+    [cleanFilms]: (state, action) => false,
   },
   false
 );

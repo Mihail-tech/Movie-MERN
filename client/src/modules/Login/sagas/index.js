@@ -10,7 +10,6 @@ function* loginWorker(action) {
     const response = yield call(auth.login, action.payload);
     yield put(
       loginUserSucceeded({
-        id: response.data.id,
         username: response.data.username,
         email: response.data.email,
         password: response.data.password,

@@ -12,8 +12,9 @@ export const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(8)
 },
   media: {
-    height: 'auto',
+    height: '400px',
     verticalAlign: 'top',
+    margin: '15px'
   },
   content: {
     padding: theme.spacing(3),
@@ -47,6 +48,11 @@ export const useStyles = makeStyles(theme => ({
     width: '14px',
     height: '14px',
     margin: `0 4px`,
+  },
+  card: {
+    height: 'auto',
+    display: 'flex',
+
   },
   updateButton: {
     textTransform: 'none',

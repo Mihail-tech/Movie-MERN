@@ -1,5 +1,7 @@
 import { handleActions } from 'redux-actions';
 
+import {loginUserRequested, loginUserSucceeded, loginUserFailed} from '../actions';
+
 const initialState = {
   processing: false,
     errors: [],
@@ -7,13 +9,13 @@ const initialState = {
 
 const loginReducer = handleActions(
   {
-    USER_LOGIN_REQUESTED: (state, action) => ({
+    [loginUserRequested]: (state, action) => ({
       processing: true,
     }),
-    USER_LOGIN_SUCCEEDED: (state, action) => ({
+    [loginUserSucceeded]: (state, action) => ({
       processing: false,
     }),
-    USER_LOGIN_FAILED: (state, action) => ({
+    [loginUserFailed]: (state, action) => ({
       processing: false,
       errors: [...action.payload],
     }),
