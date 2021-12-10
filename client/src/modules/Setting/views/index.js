@@ -78,7 +78,7 @@ const Setting = props => {
                     id= "pic"
                     type = "file"
                     accept="image/*"
-                    onChange={handleFileUpdate}
+                    onChange={e => handleFileUpdate(e)}
                     ></input>
                 </CardContent>
                 <div className={classes.buttonBlock}>

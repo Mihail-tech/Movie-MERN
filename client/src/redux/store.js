@@ -20,6 +20,7 @@ const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['account'],
+  blacklist: ['_persist']
 };
 
 const rootReducer = createRootReducer(history);

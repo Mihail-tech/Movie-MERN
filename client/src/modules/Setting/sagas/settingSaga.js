@@ -7,6 +7,7 @@ import { userUpdateSucceeded, userUpdateFailed } from '../action';
 const getToken = state => state.account.token;
 
 function* settingWorker(action) {
+  console.log(action)
   try {
     const token = yield select(getToken);
 
@@ -44,5 +45,6 @@ function* settingWorker(action) {
 function* settingWatcher() {
     yield takeLatest('USER_UPDATE_REQUESTED', settingWorker);
   };
+
 
 export default settingWatcher;

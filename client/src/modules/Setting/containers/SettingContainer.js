@@ -42,7 +42,7 @@ const SettingContainer = props => {
       const file = e.target.files[0];
 
       const formData = new FormData();
-      formData.append('file', file, file);
+      formData.append('file', file, file.name);
 
       props.updateAvatar(formData);
 

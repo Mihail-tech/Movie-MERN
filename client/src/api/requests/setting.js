@@ -8,4 +8,14 @@ const setting = async (data, token) => {
       }, { data});
 };
 
-export default setting;
+const updatePic = async (formData, token) => {
+    return await service.post('/setting/updatePic',  {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }, { formData});
+};
+
+export default {setting, 
+    updatePic
+};

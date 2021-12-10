@@ -5,12 +5,13 @@ import {commentSucceeded, commentFailed} from '../actions';
 
 const getToken = state => state.account.token;
 
-function* commentWorker(action) {
+function* commentWorker(action, _id) {
+    console.log(action.payload, 'action')
   try {
     const token = yield select(getToken);
 
-    const response = yield call(catalog.comment, token, action.payload);
-    console.log(response.data)
+    const response = yield call(catalog.comment, action.payload);
+    console.log(response.data, 'response')
     yield put(commentSucceeded(response.data));
 
   } catch (err) {

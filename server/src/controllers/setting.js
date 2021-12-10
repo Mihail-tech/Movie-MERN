@@ -28,4 +28,15 @@ console.log(user)
     } catch (err) {
         next(err.message);
     }
-}
+};
+
+export const updatePic = async (req, res) => {
+
+    try {
+    //     const file = req.files.file
+        const user = await User.findById(req.params._id); 
+        
+    } catch (err) {
+        next(err.message);
+    }
+};

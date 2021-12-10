@@ -1,16 +1,18 @@
 import {handleActions} from 'redux-actions';
+import {commentSucceeded, commentFailed, commentRequested} from '../../actions';
 
 const initialState = {
-    comment: []
+    content: ''
 }
 
 const commentPost = handleActions({
-    COMMENT_POST: (state, action) => ({
-        ...state,
-        comment: action.payload
-    })
+    [commentRequested]: (state, action) => state,
+    [commentSucceeded]: (state, action) => {
+        return action.payload
+    },
+    [commentFailed]: (state, action) => []
 },
-    initialState
+[]
 );
 
 export default commentPost;

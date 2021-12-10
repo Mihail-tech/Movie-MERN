@@ -8,6 +8,7 @@ import { getFilmRequested } from '../actions';
 const CurrentFilmContainer = props => {
   const { getFilmRequested } = props;
   const { id } = useParams();
+  console.log(props)
 
   useEffect(() => {
     getFilmRequested(id);

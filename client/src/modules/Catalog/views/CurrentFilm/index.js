@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useStyles } from './styles';
 import { ProtectedLayout } from '../../../../layouts';
 import { ReactComponent as Star } from '../../../../static/images/star-solid.svg';
-import Comment from '../Comment';
+import CommentContainer from '../../containers/CommentContainer';
 
 const CurrentFilm = ({ film }) => {
   const classes = useStyles();
@@ -28,7 +28,7 @@ const CurrentFilm = ({ film }) => {
             <Divider className={classes.divider} light />
             <Typography>
               <h3>Comments:</h3>
-              <Comment />
+              <CommentContainer />
             </Typography>
           </CardContent>
         </Card>
