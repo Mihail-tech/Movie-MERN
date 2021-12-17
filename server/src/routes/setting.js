@@ -1,6 +1,6 @@
 import express from 'express';
 import { validate } from 'express-jsonschema';
-import { authorize } from '../middleware/passport/authentication';
+import { authenticate, authorize } from '../middleware/passport/authentication';
 import { postSetting, updatePic } from '../controllers/setting';
 import registerUserSchema from '../schemas/registerUserSchema';
 

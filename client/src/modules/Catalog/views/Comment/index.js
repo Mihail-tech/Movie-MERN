@@ -2,30 +2,27 @@ import React from 'react';
 import useStyles from './styles';
 import PropTypes from 'prop-types';
 import { Button, Typography, Avatar, TextField } from '@material-ui/core';
-import { useParams } from 'react-router';
 
 const Comment = props => {
   const classes = useStyles();
   const { pic, username, comments, comment, setComment, handleComment } = props;
-console.log(props)
+  console.log(props);
   return (
     <div>
-      <div>
-        <Avatar src={pic} alt='avatar' />
-      </div>
-      <div>
-        <div>
-          <Typography variant='h6'>{username}</Typography>
-        </div>
-      </div>
-      <h4>Write your comment:</h4>
-      {comments.map((c, i) => (
+      {comments.map((com, i) => (
         <form>
-          <div>
-            <Typography key={i}>c {i}</Typography>
+          <div className={classes.comment}>
+            <Avatar src={pic} alt='avatar' className={classes.image} />
+            <Typography variant='h6' className={classes.username}>
+              {username}:
+            </Typography>
+            <Typography className={classes.text} key={i}>
+              {com}
+            </Typography>
           </div>
         </form>
       ))}
+      <h4>Write your comment:</h4>
       <div>
         <TextField
           fullWidth

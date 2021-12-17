@@ -1,7 +1,7 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 import PropTypes from 'prop-types';
-import { Avatar, Button, CardContent, TextField, Typography, Container } from '@material-ui/core';
+import { Avatar, Button, CardContent, TextField, Typography, Container,  } from '@material-ui/core';
 
 
 import { useStyles } from './style';
@@ -9,8 +9,9 @@ import { ProtectedLayout } from '../../../layouts';
 
 const Setting = props => {
   const classes = useStyles();
-  const {username, email, password, pic, handleChange, handleUpdate, handleFileUpdate} = props;
+  const {username, email, password, pic, handleUpdate,handleChange, handleFileUpdate} = props;
 
+  console.log(props)
   return (
     <ProtectedLayout>
       <div className={classes.block}>
@@ -21,7 +22,7 @@ const Setting = props => {
             initialValue={{
               username: username,
               email: email,
-              password: password,
+              // password: password,
             }}>
             {({  handleBlur, handleUpdate }) => (
               <form onSubmit={handleUpdate}>
@@ -32,12 +33,12 @@ const Setting = props => {
                     variant='standard'
                     name = 'username'
                     label={username}
-                    // value={username}
+                    //  value={username}
                     onBlur={handleBlur('username')}
-                    // onChange={e => {
-                    // //   handleChange(e);
-                    //   handleUpdate(e);
-                    // }}
+                    onChange={e => {
+                      handleChange(e)
+                      // handleUpdate(e);
+                    }}
                     >
                     </TextField>
                 </CardContent>
@@ -50,33 +51,34 @@ const Setting = props => {
                     label={email}
                     // value={email}
                     onBlur={handleBlur('email')}
-                    // onChange={e => {
-                    // //   handleChange(e);
-                    //   handleChange(e);
-                    // }}
+                    onChange={e => {
+                      handleChange(e);
+                    // handleUpdate(e);
+                    }}
                     ></TextField>
                 </CardContent>
-                <CardContent>
+                {/* <CardContent>
                   <Typography variant='h5'>Password</Typography>
                   <TextField type='password' variant='standard' name='password'
                     // value={password}
                     onBlur={handleBlur('password')}
-                    // onChange={e => {
-                    // //   handleChange(e);
+                    onChange={e => {
                     //   handleChange(e);
-                    // }}
+                    handleUpdate(e);
+                    }}
                     ></TextField>
                 </CardContent>
                 <CardContent>
                   <Typography variant='h5'>Confirm Password</Typography>
                   <TextField type='password' variant='standard' name='password'
                    ></TextField>
-                </CardContent>
+                </CardContent> */}
                 <CardContent>
                   <Typography variant='h5'>Change avatar</Typography>
                   <input 
                     id= "pic"
                     type = "file"
+                    
                     accept="image/*"
                     onChange={e => handleFileUpdate(e)}
                     ></input>

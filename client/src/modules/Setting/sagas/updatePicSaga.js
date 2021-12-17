@@ -7,11 +7,12 @@ import { avatarUpdateSucceeded, avatarUpdateFailed } from '../action';
 const getToken = state => state.account.token;
 
 function* updatePicWorker(action) {
-    console.log(action)
+    console.log(action.payload, 'action saga')
   try {
     // const token = yield select(getToken);
 
     const response = yield call(setting.updatePic, action.payload);
+    console.log(response.data)
     yield put(avatarUpdateSucceeded(response.data));
   } catch (err) {
 

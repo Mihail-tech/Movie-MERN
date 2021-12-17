@@ -16,34 +16,36 @@ const getFilms = async (token, query,) => {
   });
 };
 
-const filmId = async (token, id, data) => {
+const filmId = async (token, id) => {
   return await service.get(`/films/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  }, {data});
+  });
 };
 
 const comment = async ( data, token) => {
+  console.log(data, 'data url for back')
   return await service.post(`/films/comment`, {
     headers: {
       Authorization: `Bearer ${token}`,
-    },
-  }, {data})
+    }, data
+  })
 };
 
-// const commentGet = async ( data, token) => {
-//   return await service.get(`/films/comment/get`, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   }, {data})
-// };
+const commentGet = async ( data, token) => {
+  console.log(data)
+  return await service.get(`/films/comment/get`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }, data
+  })
+};
 
 export default {
   getCategories,
   getFilms,
   filmId,
   comment,
-  // commentGet
+  commentGet
 };

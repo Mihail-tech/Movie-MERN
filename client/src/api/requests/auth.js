@@ -5,6 +5,7 @@ const register = async (data) => {
 };
 
 const login = async (data) => {
+  console.log(data)
   return await service.post('/users/login', { data });
 };
 

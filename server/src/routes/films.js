@@ -7,8 +7,8 @@ const router = express.Router();
 
 router.get('/', authorize, getFilms);
 router.get('/:id', authorize, film);
-router.post('/comment',  commentPost);
-router.post('/comment/get',  commentGet);
+router.post('/comment', authorize, commentPost);
+router.post('/comment', authorize, commentGet);
 
 router.use((err, req, res, next) => {
   next(err);

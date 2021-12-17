@@ -7,16 +7,17 @@ import { userUpdateSucceeded, userUpdateFailed } from '../action';
 const getToken = state => state.account.token;
 
 function* settingWorker(action) {
-  console.log(action)
+  console.log(action, 'setting action')
   try {
     const token = yield select(getToken);
 
-    const response = yield call(setting, token, action.payload);
+    const response = yield call(setting, action.payload, token);
+    console.log(response.data, 'response.data')
     yield put(
       userUpdateSucceeded({
         username: response.data.username,
         email: response.data.email,
-        password: response.data.password,
+        // password: response.data.password,
         pic: response.data.pic,
         token: response.data.token,
       })

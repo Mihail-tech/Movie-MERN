@@ -5,7 +5,7 @@ import Setting from '../views';
 import accountReducer from '../../Account/reducers';
 import { history } from '../../../redux/store';
 import { unsetCurrentUser } from '../../Account/actions';
-import { avatarUpdateRequested } from '../action';
+import { userUpdateRequested, avatarUpdateRequested } from '../action';
 
 const SettingContainer = props => {
   const [username, setUsername] = useState(props.username);
@@ -13,18 +13,18 @@ const SettingContainer = props => {
   const [password, setPassword] = useState(props.password);
   const [confirmPassword, setConfirmPassword] = useState('');
   const [pic, setPic] = useState(props.pic);
-
+console.log(props)
   // const submitHandler = (event) => {
   //     event.preventDefault();
   // };
 
-//   const handleChange = e => {
-//     const name = e.target.name;
-//     const value = e.target.value;
-
-//     name === 'username' && setUsername(value);
-//     name === 'email' && setEmail(value);
-//   };
+  const handleChange = e => {
+    const name = e.target.name;
+    const value = e.target.value;
+console.log(value)
+    name === 'username' && setUsername(value);
+    name === 'email' && setEmail(value);
+  };
 
   // const handleSubmit = () => {
   //     props.updateUser();
@@ -44,19 +44,24 @@ const SettingContainer = props => {
       const formData = new FormData();
       formData.append('file', file, file.name);
 
+      console.log(formData)
+
       props.updateAvatar(formData);
 
       e.target.files = null;
   };
 
-  const handleUpdate = () => {
-
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    console.log('fucking code')
     props.updateUser({
       username,
       email,
       password,
     });
+    
   };
+
 
   const profileProps = {
     username,
@@ -64,7 +69,7 @@ const SettingContainer = props => {
     password,
     pic,
     handleUpdate,
-    // handleChange,
+    handleChange,
     handleFileUpdate,
     // updatePic,
   };
@@ -81,7 +86,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateUser: () => dispatch(unsetCurrentUser()),
+  updateUser: (user) => dispatch(userUpdateRequested(user)),
   updateAvatar: data => dispatch(avatarUpdateRequested(data)),
 });
 

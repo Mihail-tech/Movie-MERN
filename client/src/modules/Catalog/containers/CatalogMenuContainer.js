@@ -65,19 +65,19 @@ const handleChange = (event) => {
   //   this.props.handleSettings({ [event.target.name]: event.target.value });
   // };
 
-  const handleClick = (nextCategory, index) => {
-    state.pressedButton === index
-        ? setState({ pressedButton: undefined })
-        : setState({ pressedButton: index });
+  // const handleClick = (nextCategory, index) => {
+  //   state.pressedButton === index
+  //       ? setState({ pressedButton: undefined })
+  //       : setState({ pressedButton: index });
 
-      if (state.currentCategory === nextCategory && state.pressedButton === index) {
-        props.handleSettings({ category: '' });
-        setState({ currentCategory: '' });
-      } else {
-        props.handleSettings({ category: nextCategory });
-        setState({ currentCategory: nextCategory });
-      }
-  }
+  //     if (state.currentCategory === nextCategory && state.pressedButton === index) {
+  //       props.handleSettings({ category: '' });
+  //       setState({ currentCategory: '' });
+  //     } else {
+  //       props.handleSettings({ category: nextCategory });
+  //       setState({ currentCategory: nextCategory });
+  //     }
+  // }
 
   // handleClick = (nextCategory, index) => {
   //   this.state.pressedButton === index
@@ -102,7 +102,7 @@ const handleChange = (event) => {
         pressedButton={state.pressedButton}
         handleInput={handleInput}
         handleChange={handleChange}
-        handleClick={handleClick}
+        // handleClick={handleClick}
       />
     );
   
@@ -113,7 +113,7 @@ const mapStateToProps = state => ({
 });
 
 CatalogMenuContainer.propTypes = {
-  handleSettings: PropTypes.func.isRequired,
+  handleSettings: PropTypes.func,
 };
 
 export default connect(mapStateToProps)(CatalogMenuContainer);

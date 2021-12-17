@@ -1,13 +1,15 @@
-import User from '../models/user'
+import User from '../models/user';
+import mongoose from 'mongoose';
+import Uuid from 'uuid';
 
 export const postSetting = async (req, res, next) => {
     try {
-        const user = await User.findById(req.params._id);
-console.log(user)
+        const user = await User.findOne(req.body.username);
+console.log(req.body, 'user')
         if(user) {
-            user.name = req.body.name || user.name;
+            user.username = req.body.username || user.username;
             user.email = req.body.email || user.email;
-            // user.password = req.body.password || user.password;
+            user.password = req.body.password || user.password;
             user.pic = req.body.pic || user.pic;
         };
 
@@ -26,17 +28,24 @@ console.log(user)
          })
 
     } catch (err) {
+        console.log(err)
         next(err.message);
     }
 };
 
-export const updatePic = async (req, res) => {
+export const updatePic = async (req, res, next) => {
 
     try {
-    //     const file = req.files.file
-        const user = await User.findById(req.params._id); 
         
+        const file = req.files.file
+        const user = await User.find({ _id: mongoose.Types.ObjectId() }); 
+        const avatarName = Uuid + 'jpg';
+        file.mv(('public') + '\\' + avatarName)
+        user.pic = avatarName
+        await user.save()
+
     } catch (err) {
+        console.log(err)
         next(err.message);
     }
 };

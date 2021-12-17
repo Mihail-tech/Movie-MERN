@@ -1,19 +1,21 @@
 import service from '../service';
 
 const setting = async (data, token) => {
-    return await service.post('/setting',  {
+  console.log(data, 'send on back')
+    return await service.put('/setting',  {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
-      }, { data});
+        }, data
+      });
 };
 
 const updatePic = async (formData, token) => {
-    return await service.post('/setting/updatePic',  {
+  console.log(formData, 'send on back')
+    return await service.put('/setting/updatePic',  {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
-      }, { formData});
+        }, formData
+      });
 };
 
 export default {setting, 
