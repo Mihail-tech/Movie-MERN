@@ -33,12 +33,12 @@ const comment = async ( data, token) => {
   })
 };
 
-const commentGet = async ( data, token) => {
-  console.log(data)
-  return await service.get(`/films/comment/get`, {
+const comments = async ( id, token) => {
+  console.log(id, 'facking send for back')
+  return await service.get(`/films/comments/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
-    }, data
+    }
   })
 };
 
@@ -47,5 +47,5 @@ export default {
   getFilms,
   filmId,
   comment,
-  commentGet
+  comments
 };

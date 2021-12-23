@@ -2,16 +2,14 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import Setting from '../views';
-import accountReducer from '../../Account/reducers';
-import { history } from '../../../redux/store';
-import { unsetCurrentUser } from '../../Account/actions';
 import { userUpdateRequested, avatarUpdateRequested } from '../action';
+import {passwordSelector, emailSelector, picSelector, usernameSelector, settingErrorsSelector} from '../../../redux/selectors';
 
 const SettingContainer = props => {
   const [username, setUsername] = useState(props.username);
   const [email, setEmail] = useState(props.email);
   const [password, setPassword] = useState(props.password);
-  const [confirmPassword, setConfirmPassword] = useState('');
+  // const [confirmPassword, setConfirmPassword] = useState('');
   const [pic, setPic] = useState(props.pic);
 console.log(props)
   // const submitHandler = (event) => {
@@ -51,13 +49,14 @@ console.log(value)
       e.target.files = null;
   };
 
-  const handleUpdate = (event) => {
-    event.preventDefault();
+  const handleUpdate = () => {
+    // event.preventDefault();
     console.log('fucking code')
     props.updateUser({
       username,
       email,
-      password,
+      // password,
+      pic
     });
     
   };
@@ -78,11 +77,11 @@ console.log(value)
 };
 
 const mapStateToProps = state => ({
-  username: state.account.username,
-  email: state.account.email,
-  password: state.account.password,
-  pic: state.account.pic,
-  settingErrors: state.setting.errors,
+  username: usernameSelector(state),
+  email: emailSelector(state),
+  password: passwordSelector(state),
+  pic: picSelector(state),
+  settingErrors: settingErrorsSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({

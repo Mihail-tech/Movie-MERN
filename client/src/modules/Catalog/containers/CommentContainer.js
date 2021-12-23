@@ -3,34 +3,41 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 
 import Comment from '../views/Comment';
-import { commentRequested } from '../actions';
+import { commentRequested, commentGetRequested } from '../actions';
+import {currentFilmSelector} from '../../../redux/selectors';
 
 const CommentContainer = props => {
-  const [comments, setComments] = useState([]);
-  const [comment, setComment] = useState();
+  const {username } = props;
+  // const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState('');
 
   const { id } = useParams();
+  console.log(props.comments)
 
   useEffect(() => {
-    commentRequested(id);
-  }, [id]);
+    // props.commentRequested(id);
+    props.commentGetRequested(id)
+  }, []);
 
   const handleComment = () => {
-    const finalComment = `${comment}`;
+    // const finalComment = `${comment}`;
+    const finalComment = {writer:username , content: comment , filmId: props.currentFilm._id }
     console.log(finalComment, 'comment output');
     props.commentRequested(finalComment);
-    setComments(comments.concat(comment));
+    // setComments(comments.concat(comment));
+    
     setComment('')
   };
 
   return (
     <Comment
-      username={props.username}
+      username={username}
       pic={props.pic}
-      comments={comments}
+      // comments={comments}
       comment={comment}
       setComment={setComment}
       handleComment={handleComment}
+      comments={props.comments}
     />
   );
 };
@@ -38,11 +45,13 @@ const CommentContainer = props => {
 const mapStateToProps = state => ({
   username: state.account.username,
   pic: state.account.pic,
-  commen: state.catalog.comment,
+  comments: state.catalog.comment,
+  currentFilm: currentFilmSelector(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   commentRequested: comment => dispatch(commentRequested(comment)),
+  commentGetRequested: (id) => dispatch(commentGetRequested(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentContainer);

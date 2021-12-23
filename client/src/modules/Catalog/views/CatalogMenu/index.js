@@ -72,7 +72,6 @@ CatalogMenu.propTypes = {
     order: PropTypes.number,
   }),
   loading: PropTypes.bool,
-  pressedButton: PropTypes.number,
   handleInput: PropTypes.func,
   handleChange: PropTypes.func,
   handleClick: PropTypes.func,

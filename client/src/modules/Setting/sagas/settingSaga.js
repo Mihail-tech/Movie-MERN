@@ -2,12 +2,12 @@ import { call, put, takeLatest, select } from 'redux-saga/dist/redux-saga-effect
 
 import { setting } from '../../../api/requests';
 import { history } from '../../../redux/store';
-import { userUpdateSucceeded, userUpdateFailed } from '../action';
+import { userUpdateSucceeded, userUpdateFailed, userUpdateRequested } from '../action';
 
 const getToken = state => state.account.token;
 
 function* settingWorker(action) {
-  console.log(action, 'setting action')
+  console.log(action.payload, 'setting action')
   try {
     const token = yield select(getToken);
 
@@ -44,7 +44,7 @@ function* settingWorker(action) {
 };
 
 function* settingWatcher() {
-    yield takeLatest('USER_UPDATE_REQUESTED', settingWorker);
+    yield takeLatest(userUpdateRequested, settingWorker);
   };
 
 

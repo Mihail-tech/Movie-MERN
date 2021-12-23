@@ -16,6 +16,10 @@ export const commentRequested = createAction('COMMENT_REQUESTED');
 export const commentSucceeded = createAction('COMMENT_SUCCEEDED');
 export const commentFailed = createAction('COMMENT_FAILED');
 
+export const commentGetRequested = createAction('COMMENT_GET_REQUESTED');
+export const commentGetSucceeded = createAction('COMMENT_GET_SUCCEEDED');
+export const commentGetFailed = createAction('COMMENT_GET_FAILED');
+
 export const cleanFilms = createAction('FILMS_CLEAN');
 
 export const updateCatalogSettings = createAction('CATALOG_SETTINGS_UPDATE');

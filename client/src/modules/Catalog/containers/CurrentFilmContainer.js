@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 
 import CurrentFilm from '../views/CurrentFilm';
 import { getFilmRequested } from '../actions';
+import {currentFilmSelector} from '../../../redux/selectors';
 
 const CurrentFilmContainer = props => {
   const { getFilmRequested } = props;
@@ -17,7 +18,7 @@ const CurrentFilmContainer = props => {
 };
 
 const mapStateToProps = state => ({
-  currentFilm: state.catalog.film,
+  currentFilm: currentFilmSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({

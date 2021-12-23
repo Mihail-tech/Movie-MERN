@@ -2,7 +2,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
 import { catalog } from '../../../api/requests';
-import { getFilmsSucceeded, getFilmsFailed, updateHasMore } from '../actions';
+import { getFilmsSucceeded, getFilmsFailed, updateHasMore, getFilmsRequested } from '../actions';
 
 const getToken = state => state.account.token;
 
@@ -26,7 +26,7 @@ function* filmsWorker(action) {
 };
 
 function* filmsWatcher() {
-  yield takeLatest('FILMS_GET_REQUESTED', filmsWorker);
+  yield takeLatest(getFilmsRequested, filmsWorker);
 };
 
 

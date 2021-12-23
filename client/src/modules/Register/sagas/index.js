@@ -2,7 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-pr
 
 import { auth } from '../../../api/requests';
 import { history } from '../../../redux/store';
-import { registerUserSucceeded, registerUserFailed } from '../actions';
+import { registerUserSucceeded, registerUserFailed, registerUserRequested } from '../actions';
 
 function* registerWorker(action) {
   try {
@@ -37,7 +37,7 @@ function* registerWorker(action) {
 }
 
 function* registerWatcher() {
-  yield takeLatest('USER_REGISTER_REQUESTED', registerWorker);
+  yield takeLatest(registerUserRequested, registerWorker);
 }
 
 export default registerWatcher;

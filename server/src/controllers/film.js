@@ -60,9 +60,8 @@ export const getFilms = async (req, res, next) => {
 
 
 export const film = async (req, res) => {
+  const id = req.params.id
   try {
-    const id = req.params.id
-    
   const data = await Film.findById({_id:id});
   res.json(data);
   } catch (error) {

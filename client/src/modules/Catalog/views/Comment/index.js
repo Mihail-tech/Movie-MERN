@@ -3,21 +3,24 @@ import useStyles from './styles';
 import PropTypes from 'prop-types';
 import { Button, Typography, Avatar, TextField } from '@material-ui/core';
 
-const Comment = props => {
+const Comment = (props) => {
   const classes = useStyles();
   const { pic, username, comments, comment, setComment, handleComment } = props;
   console.log(props);
   return (
     <div>
-      {comments.map((com, i) => (
+      {comments.map((com, index) => (
         <form>
           <div className={classes.comment}>
             <Avatar src={pic} alt='avatar' className={classes.image} />
             <Typography variant='h6' className={classes.username}>
               {username}:
             </Typography>
-            <Typography className={classes.text} key={i}>
+            <Typography className={classes.text} 
+            key={index}
+            >
               {com}
+              {comments}
             </Typography>
           </div>
         </form>
@@ -43,6 +46,9 @@ const Comment = props => {
 
 Comment.propTypes = {
   username: PropTypes.string,
+  pic: PropTypes.string,
+  comment: PropTypes.string,
+  comments: PropTypes.array,
   handleComment: PropTypes.func,
 };
 

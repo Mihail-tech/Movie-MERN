@@ -3,7 +3,7 @@ import { call, put, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-pr
 
 import { auth } from '../../../api/requests';
 import { history } from '../../../redux/store';
-import { loginUserSucceeded, loginUserFailed } from '../actions';
+import { loginUserSucceeded, loginUserFailed, loginUserRequested } from '../actions';
 
 function* loginWorker(action) {
   try {
@@ -30,7 +30,7 @@ function* loginWorker(action) {
 }
 
 function* loginWatcher() {
-  yield takeLatest('USER_LOGIN_REQUESTED', loginWorker);
+  yield takeLatest(loginUserRequested, loginWorker);
 }
 
 export default loginWatcher;

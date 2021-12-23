@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../views';
 import { unsetCurrentUser } from '../../Account/actions';
 import { history } from '../../../redux/store';
+import {usernameSelector, picSelector} from '../../../redux/selectors';
 
 const HeaderContainer = props => {
   const [open, setOpen] = useState(true);
@@ -31,8 +32,8 @@ const HeaderContainer = props => {
 };
 
 const mapStateToProps = state => ({
-  username: state.account.username,
-  pic: state.account.pic,
+  username: usernameSelector(state),
+  pic: picSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({

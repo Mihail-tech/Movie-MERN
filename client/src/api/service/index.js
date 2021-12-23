@@ -10,6 +10,7 @@ const post = async (url, options) => {
 };
 
 const put = async (url, options) => {
+  console.log(options, 'options')
   return await request({ ...options, url, method: 'PUT'});
 }
 

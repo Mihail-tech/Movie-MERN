@@ -20,10 +20,6 @@ const filmSchema = new mongoose.Schema({
     min: 0,
     max: 10,
   },
-  // comment: {
-  //   type: String,
-  //   default:[]
-  // }
 });
 
 const Film = mongoose.model('Film', filmSchema, 'films');

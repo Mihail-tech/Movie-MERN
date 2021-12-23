@@ -2,16 +2,16 @@ import { call, put, takeLatest, select } from 'redux-saga/dist/redux-saga-effect
 
 import { setting } from '../../../api/requests';
 
-import { avatarUpdateSucceeded, avatarUpdateFailed } from '../action';
+import { avatarUpdateSucceeded, avatarUpdateFailed, avatarUpdateRequested } from '../action';
 
 const getToken = state => state.account.token;
 
 function* updatePicWorker(action) {
     console.log(action.payload, 'action saga')
   try {
-    // const token = yield select(getToken);
+    const token = yield select(getToken);
 
-    const response = yield call(setting.updatePic, action.payload);
+    const response = yield call(setting.updatePic, action.payload, token);
     console.log(response.data)
     yield put(avatarUpdateSucceeded(response.data));
   } catch (err) {
@@ -21,7 +21,7 @@ function* updatePicWorker(action) {
 };
 
 function* updatePicWatcher() {
-    yield takeLatest('AVATAR_UPDATE_REQUESTED', updatePicWorker);
+    yield takeLatest(avatarUpdateRequested, updatePicWorker);
   };
 
 

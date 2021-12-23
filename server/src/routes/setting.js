@@ -6,8 +6,8 @@ import registerUserSchema from '../schemas/registerUserSchema';
 
 const router = express.Router();
 
-router.post('/', validate({body: registerUserSchema}), authorize, postSetting);
-router.post('/updatePic', updatePic);
+router.put('/', validate({body: registerUserSchema}), authorize, postSetting);
+router.put('/updatePic', updatePic);
 
 
 router.use((err, req, res, next) => {

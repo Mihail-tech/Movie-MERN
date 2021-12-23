@@ -3,10 +3,10 @@ import Comment from '../models/comment';
 
 export const commentPost = async (req, res, next) => {
   try {
-    const comment = new Comment({ writer: req.params._id, ...req.body });
+    const comment = new Comment({ writer: req.params.username, ...req.body });
 
     console.log(req.body, 'body');
-    console.log(req.params._id, 'writer');
+    console.log(req.params.username, 'writer');
     console.log(comment, 'comment new comment');
 
     comment.save((err, comment) => {
@@ -15,9 +15,9 @@ export const commentPost = async (req, res, next) => {
       console.log(comment, 'comment');
 
       if (err) return res.json({ success: false, err });
-
+console.log(comment.writer)
       Comment.find({ _id: comment._id })
-        .populate('writer')
+        // .populate('writer')
         .exec((err, result) => {
           console.log(result, 'result');
           if (err) return res.json({ success: false, err });
@@ -30,20 +30,19 @@ export const commentPost = async (req, res, next) => {
 };
 
 export const commentGet = async (req, res) => {
-  console.log(req.query, 'req');
+  console.log(req.params.id, 'req.query');
+  console.log(req.body)
+  const id = req.params.id
+  try {
+      Comment.findById({ id: id })
+  // .populate('writer')
+  .exec((err, comments) => {
+      if (err) return res.status(400).send(err)
+      return res.status(200).json({ success: true, comments })
+  })
 
-  const docs = await Comment.find({})
-  console.log(docs)
-//   try {
-//       Comment.find({ "postId": req.body.film })
-//   .populate('writer')
-//   .exec((err, comments) => {
-//       if (err) return res.status(400).send(err)
-//       return res.status(200).json({ success: true, comments })
-//   })
+  } catch (error) {
+      res.status(400).json( error.message )
 
-//   } catch (error) {
-//       res.status(400).json( error.message )
-
-//   }
+  }
 };

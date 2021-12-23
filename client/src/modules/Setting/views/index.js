@@ -3,7 +3,6 @@ import { Formik, Form } from 'formik';
 import PropTypes from 'prop-types';
 import { Avatar, Button, CardContent, TextField, Typography, Container,  } from '@material-ui/core';
 
-
 import { useStyles } from './style';
 import { ProtectedLayout } from '../../../layouts';
 
@@ -24,8 +23,8 @@ const Setting = props => {
               email: email,
               // password: password,
             }}>
-            {({  handleBlur, handleUpdate }) => (
-              <form onSubmit={handleUpdate}>
+            {({  handleBlur, handleSubmit }) => (
+              <Form onSubmit={handleSubmit}>
                 <CardContent>
                   <Typography variant='h5'>Name  </Typography>
                   <TextField
@@ -88,7 +87,7 @@ const Setting = props => {
               Update
             </Button>
           </div>
-              </form>
+              </Form>
             )}
           </Formik>
         </Container>

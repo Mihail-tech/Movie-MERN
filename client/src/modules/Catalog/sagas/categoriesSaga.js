@@ -2,7 +2,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
 import { catalog } from '../../../api/requests';
-import { getCategoriesSucceeded, getCategoriesFailed } from '../actions';
+import { getCategoriesSucceeded, getCategoriesFailed, getCategoriesRequested } from '../actions';
 
 const getToken = state => state.account.token;
 
@@ -18,7 +18,7 @@ function* categoriesWorker(action) {
 };
 
 function* categoriesWatcher() {
-  yield takeLatest('CATEGORIES_GET_REQUESTED', categoriesWorker);
+  yield takeLatest(getCategoriesRequested, categoriesWorker);
 };
 
 export default categoriesWatcher;

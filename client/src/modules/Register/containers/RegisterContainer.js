@@ -1,65 +1,51 @@
-import React, { PureComponent, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import RegisterForm from '../views';
 import { registerUserRequested } from '../actions';
 import validate from '../util/validate';
+import { registerErrorsSelector } from '../../../redux/selectors';
 
-class RegisterContainer extends PureComponent {
+const RegisterContainer = props => {
+  const { registerUser, registerErrors } = props;
 
-// const [username, setUsername] = useState("");
-// const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
-  state = {
+  const [state, setState] = useState({
     validation: {
       valid: false,
       errors: {},
     },
-  };
+  });
 
-  handleSignUp = values => {
+  const handleSignUp = values => {
     const user = {
       username: values.username,
       email: values.email,
       password: values.password,
     };
-
     const confirmPassword = values.confirmPassword;
 
-    this.setState(
-      {
-        validation: validate({ ...user, confirmPassword }),
-      },
-      () => {
-        if (this.state.validation.valid) {
-          this.props.registerUser(user);
-        }
-      }
-    );
+    setState({ validation: validate({ ...user, confirmPassword }) });
+    registerUser(user);
   };
 
-  render = () => (
+  return (
     <RegisterForm
-      onSubmit={this.handleSignUp}
-      usernameError={this.state.validation.errors.username}
-      emailError={this.state.validation.errors.email}
-      passwordError={this.state.validation.errors.password}
-      confirmError={this.state.validation.errors.confirmPassword}
-      registerErrors={this.props.registerErrors}
+      onSubmit={handleSignUp}
+      usernameError={state.validation.errors.username}
+      emailError={state.validation.errors.email}
+      passwordError={state.validation.errors.password}
+      confirmError={state.validation.errors.confirmPassword}
+      registerErrors={registerErrors}
     />
   );
-}
+};
 
 const mapStateToProps = state => ({
-  registerErrors: state.register.errors,
+  registerErrors: registerErrorsSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   registerUser: user => dispatch(registerUserRequested(user)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RegisterContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

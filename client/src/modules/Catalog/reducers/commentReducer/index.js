@@ -1,17 +1,22 @@
 import {handleActions} from 'redux-actions';
-import {commentSucceeded, commentFailed, commentRequested} from '../../actions';
+import {commentSucceeded, commentFailed, commentRequested, commentGetRequested, commentGetSucceeded, commentGetFailed} from '../../actions';
 
-const initialState = {
-    content: []
-}
+const initialState = []
+
 
 const commentPost = handleActions({
     [commentRequested]: (state, action) => state,
     [commentSucceeded]: (state, action) => {
-        console.log(action.payload, 'action.payload reducer')
+        console.log(action.payload, 'action.payload facking reducer')
         return action.payload
     },
-    [commentFailed]: (state, action) => initialState
+    [commentFailed]: (state, action) => initialState,
+    [commentGetRequested]: (state, action) => state,
+    [commentGetSucceeded]: (state, action) =>{
+        console.log(action.payload.comments, 'get facking reducer')
+        return action.payload.comments
+    },
+    [commentGetFailed]: (state, action) =>state
 },
 initialState
 );

@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
 
 const CommentSchema = new mongoose.Schema({
-    writer: {type: mongoose.SchemaTypes.ObjectId, ref: 'User'},
+    writer: {type: String, ref: 'User'},
     content: { type: String, trim: true },
-    postId: {
+    filmId: {
         type: String,
+        ref: 'Film'
     },
 });
 
