@@ -9,7 +9,7 @@ const Comment = (props) => {
   console.log(props);
   return (
     <div>
-      {comments.map((com, index) => (
+      {/* {comments.map((com, index) => ( */}
         <form>
           <div className={classes.comment}>
             <Avatar src={pic} alt='avatar' className={classes.image} />
@@ -17,14 +17,14 @@ const Comment = (props) => {
               {username}:
             </Typography>
             <Typography className={classes.text} 
-            key={index}
+            // key={index}
             >
-              {com}
+              {/* {com} */}
               {comments}
             </Typography>
           </div>
         </form>
-      ))}
+      {/* ))} */}
       <h4>Write your comment:</h4>
       <div>
         <TextField

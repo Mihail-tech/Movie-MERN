@@ -7,7 +7,7 @@ import validate from '../util/validate';
 import { loginErrorsSelector } from '../../../redux/selectors';
 
 const LoginContainer = props => {
-  const {loginUser, loginErrors} = props;
+  const { loginUser, loginErrors } = props;
 
   const [state, setState] = useState({
     validation: {
@@ -16,13 +16,15 @@ const LoginContainer = props => {
     },
   });
 
-  const handleLogIn = (values) => {
+  const handleLogIn = values => {
     const user = {
       username: values.username,
       password: values.password,
     };
     setState({ validation: validate(user) });
-    loginUser(user);
+    if (state.validation.valid) {
+      loginUser(user);
+    }
   };
 
   return (

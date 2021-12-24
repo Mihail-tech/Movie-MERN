@@ -7,7 +7,7 @@ import {filmsSelector} from '../../../redux/selectors';
 
 const CatalogItemsContainer = props => {
   const {films, handleNextPage} = props;
-  
+
   return (
     <CatalogItems
       films={films.items}
@@ -23,7 +23,7 @@ const mapStateToProps = state => ({
 });
 
 CatalogItemsContainer.propTypes = {
-  handleNextPage: PropTypes.func,
+  handleNextPage: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(CatalogItemsContainer);

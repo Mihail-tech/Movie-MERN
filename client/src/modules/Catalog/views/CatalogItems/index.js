@@ -1,16 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InfiniteLoader from 'react-infinite-loader';
-import {
-  Button,
-  Typography,
-  Divider,
-  Container,
-  CardMedia,
-  CardContent,
-  Card,
-  Link
-} from '@material-ui/core/';
+import { Button, Typography, Divider, Container, CardMedia, CardContent, Card, Link } from '@material-ui/core/';
 
 import { useStyles } from './styles';
 import { ReactComponent as Star } from '../../../../static/images/star-solid.svg';
@@ -37,7 +28,7 @@ const CatalogItems = props => {
               </Typography>
             )}
             <Link href={`/films/${film._id}`} className={classes.button}>
-              <Button >more</Button>
+              <Button>more</Button>
             </Link>
           </CardContent>
         </Card>
@@ -50,16 +41,16 @@ const CatalogItems = props => {
 CatalogItems.propTypes = {
   films: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string,
-      description: PropTypes.string,
-      year: PropTypes.number,
-      rating: PropTypes.number,
-      category: PropTypes.object,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      year: PropTypes.number.isRequired,
+      rating: PropTypes.number.isRequired,
+      category: PropTypes.object.isRequired,
     })
   ),
-  loading: PropTypes.bool,
-  hasMore: PropTypes.bool,
-  handleNextPage: PropTypes.func,
+  loading: PropTypes.bool.isRequired,
+  hasMore: PropTypes.bool.isRequired,
+  handleNextPage: PropTypes.func.isRequired,
 };
 
 export default CatalogItems;

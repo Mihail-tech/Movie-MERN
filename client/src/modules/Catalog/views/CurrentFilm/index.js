@@ -38,10 +38,10 @@ const CurrentFilm = ({ film }) => {
 };
 
 CurrentFilm.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  year: PropTypes.number,
-  rating: PropTypes.number,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
 };
 
 export default CurrentFilm;

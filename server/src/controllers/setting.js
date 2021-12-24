@@ -4,8 +4,9 @@ import Uuid from 'uuid';
 
 export const postSetting = async (req, res, next) => {
     try {
-        const user = await User.findOne({"_id": req.params._id});
+        const user = await User.findOne({username: req.body.username});
 console.log(req.body, 'user')
+console.log(user.name, 'user.name')
         if(user) {
             user.username = req.body.username || user.username;
             user.email = req.body.email || user.email;

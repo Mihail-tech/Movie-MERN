@@ -26,7 +26,7 @@ const CatalogMenu = (props) => {
         <FormControl >
           <InputLabel htmlFor='sort'>Sort by</InputLabel>
           <Select
-            value={sortValues.sort}
+            value={sortValues?.sort}
             onChange={handleChange}
             inputProps={{
               name: 'sort',
@@ -40,7 +40,7 @@ const CatalogMenu = (props) => {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor='order'>Order</InputLabel>
           <Select
-            value={sortValues.order}
+            value={sortValues?.order}
             onChange={handleChange}
             inputProps={{
               name: 'order',
@@ -63,18 +63,17 @@ const CatalogMenu = (props) => {
 CatalogMenu.propTypes = {
   categories: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string,
-      description: PropTypes.string,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
     })
   ),
   sortValues: PropTypes.shape({
-    sort: PropTypes.string,
-    order: PropTypes.number,
+    sort: PropTypes.string.isRequired,
+    order: PropTypes.number.isRequired,
   }),
-  loading: PropTypes.bool,
-  handleInput: PropTypes.func,
-  handleChange: PropTypes.func,
-  handleClick: PropTypes.func,
+  loading: PropTypes.bool.isRequired,
+  handleInput: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default CatalogMenu;

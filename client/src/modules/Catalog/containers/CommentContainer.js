@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 
 import Comment from '../views/Comment';
 import { commentRequested, commentGetRequested } from '../actions';
-import {currentFilmSelector} from '../../../redux/selectors';
+import {currentFilmSelector, usernameSelector} from '../../../redux/selectors';
 
 const CommentContainer = props => {
   const {username } = props;
@@ -43,7 +43,7 @@ const CommentContainer = props => {
 };
 
 const mapStateToProps = state => ({
-  username: state.account.username,
+  username: usernameSelector(state),
   pic: state.account.pic,
   comments: state.catalog.comment,
   currentFilm: currentFilmSelector(state)

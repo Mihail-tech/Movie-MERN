@@ -25,7 +25,9 @@ const RegisterContainer = props => {
     const confirmPassword = values.confirmPassword;
 
     setState({ validation: validate({ ...user, confirmPassword }) });
-    registerUser(user);
+    if (state.validation.valid) {
+      registerUser(user);
+    }
   };
 
   return (

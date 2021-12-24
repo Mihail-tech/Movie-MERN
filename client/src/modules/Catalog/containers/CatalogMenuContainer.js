@@ -50,7 +50,7 @@ const mapStateToProps = state => ({
 });
 
 CatalogMenuContainer.propTypes = {
-  handleSettings: PropTypes.func,
+  handleSettings: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(CatalogMenuContainer);

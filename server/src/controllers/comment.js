@@ -1,4 +1,3 @@
-import Film from '../models/film';
 import Comment from '../models/comment';
 
 export const commentPost = async (req, res, next) => {
@@ -13,16 +12,8 @@ export const commentPost = async (req, res, next) => {
       console.log(err, 'err');
 
       console.log(comment, 'comment');
-
       if (err) return res.json({ success: false, err });
-console.log(comment.writer)
-      Comment.find({ _id: comment._id })
-        // .populate('writer')
-        .exec((err, result) => {
-          console.log(result, 'result');
-          if (err) return res.json({ success: false, err });
-          return res.status(200).json({ success: true, result });
-        });
+      return res.status(200).json({ success: true, comment });
     });
   } catch (err) {
     next(err);
@@ -31,18 +22,17 @@ console.log(comment.writer)
 
 export const commentGet = async (req, res) => {
   console.log(req.params.id, 'req.query');
-  console.log(req.body)
-  const id = req.params.id
+  const id = req.params.id;
+  console.log(id, 'id');
   try {
-      Comment.findById({ id: id })
-  // .populate('writer')
-  .exec((err, comments) => {
-      if (err) return res.status(400).send(err)
-      return res.status(200).json({ success: true, comments })
-  })
-
+    Comment.find({ filmId: id }).exec((err, comments) => {
+      console.log(err, 'err');
+      console.log(comments, 'comments');
+      if (err) return res.status(400).send(err);
+      return res.status(200).send({ success: true, comments });
+    });
   } catch (error) {
-      res.status(400).json( error.message )
-
+    console.log(error, 'error');
+    res.status(400).json(error.message);
   }
 };

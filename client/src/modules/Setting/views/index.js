@@ -100,7 +100,7 @@ Setting.propTypes = {
     username: PropTypes.string ,
     email: PropTypes.string ,
     // saveChange: PropTypes.func ,
-    // handleChange: PropTypes.func ,
+    handleChange: PropTypes.func ,
     handleUpdate: PropTypes.func,
     handleBlur: PropTypes.func,
     handleFileUpdate: PropTypes.func,
