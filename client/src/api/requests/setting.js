@@ -10,7 +10,7 @@ const setting = async (data, token) => {
 };
 
 const updatePic = async (formData, token) => {
-  console.log(formData, 'send on back')
+  console.log(formData, 'send on back2')
     return await service.put('/setting/updatePic',  {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -18,6 +18,7 @@ const updatePic = async (formData, token) => {
       });
 };
 
-export default {setting, 
+export default {
+    setting, 
     updatePic
 };

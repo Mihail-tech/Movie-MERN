@@ -11,7 +11,7 @@ function* settingWorker(action) {
   try {
     const token = yield select(getToken);
 
-    const response = yield call(setting, action.payload, token);
+    const response = yield call(setting.setting, action.payload, token);
     console.log(response.data, 'response.data')
     yield put(
       userUpdateSucceeded({
@@ -19,7 +19,7 @@ function* settingWorker(action) {
         email: response.data.email,
         // password: response.data.password,
         pic: response.data.pic,
-        token: response.data.token,
+        // token: response.data.token,
       })
     );
     yield call(history.push, '/setting');

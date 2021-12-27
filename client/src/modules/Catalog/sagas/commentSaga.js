@@ -9,7 +9,7 @@ function* commentWorker(action) {
     console.log(action.payload, 'facking action')
   try {
     const token = yield select(getToken);
-    const data = {content: action.payload}
+    // const data = {content: action.payload}
 
     const response = yield call(catalog.comment, action.payload, token);
     console.log(response.data, 'facking response')

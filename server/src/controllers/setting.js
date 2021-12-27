@@ -3,26 +3,28 @@ import mongoose from 'mongoose';
 import Uuid from 'uuid';
 
 export const postSetting = async (req, res, next) => {
+    console.log({id: req.user})
     try {
-        const user = await User.findOne({username: req.body.username});
-console.log(req.body, 'user')
-console.log(user.name, 'user.name')
-        if(user) {
-            user.username = req.body.username || user.username;
-            user.email = req.body.email || user.email;
-            // user.password = req.body.password || user.password;
-            user.pic = req.body.pic || user.pic;
-        };
+        const user = await User.findByIdAndUpdate({_id: req.user._id}, {username: req.body.username, email: req.body.email, pic: req.body.pic}, {new:true});
+// console.log(req.body._id, 'user')
+console.log({id: req.body._id});
+// console.log(user.name, 'user.name')
+        // if(user) {
+        //     user.username = req.body.username || user.username;
+        //     user.email = req.body.email || user.email;
+        //     // user.password = req.body.password || user.password;
+        //     user.pic = req.body.pic || user.pic;
+        // };
 
         // if(req.body.password) {
         //     user.password = req.body.password;
         // };
-console.log(user, 'user1')
-        const updateUser = await user.save();
+// console.log(user, 'user1')
+        // const updateUser = await user.save();
         console.log(updateUser, 'updateuser')
 
          res.json({
-             _id: updateUser._id,
+            //  _id: updateUser._id,
              username: updateUser.username,
              email: updateUser.email,
             //  password: updateUser.password,

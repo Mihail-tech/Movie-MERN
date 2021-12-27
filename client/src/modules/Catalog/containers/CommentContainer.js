@@ -4,36 +4,32 @@ import { useParams } from 'react-router';
 
 import Comment from '../views/Comment';
 import { commentRequested, commentGetRequested } from '../actions';
-import {currentFilmSelector, usernameSelector} from '../../../redux/selectors';
+import { currentFilmSelector, usernameSelector, commentsSelector } from '../../../redux/selectors';
 
 const CommentContainer = props => {
-  const {username } = props;
-  // const [comments, setComments] = useState([]);
+  const { username } = props;
+
   const [comment, setComment] = useState('');
 
   const { id } = useParams();
-  console.log(props.comments)
+  console.log(props.comments);
 
   useEffect(() => {
-    // props.commentRequested(id);
-    props.commentGetRequested(id)
+    props.commentGetRequested(id);
   }, []);
 
   const handleComment = () => {
-    // const finalComment = `${comment}`;
-    const finalComment = {writer:username , content: comment , filmId: props.currentFilm._id }
+    const finalComment = { writer: username, content: comment, filmId: props.currentFilm._id };
     console.log(finalComment, 'comment output');
     props.commentRequested(finalComment);
-    // setComments(comments.concat(comment));
-    
-    setComment('')
+
+    setComment('');
   };
 
   return (
     <Comment
       username={username}
       pic={props.pic}
-      // comments={comments}
       comment={comment}
       setComment={setComment}
       handleComment={handleComment}
@@ -45,13 +41,13 @@ const CommentContainer = props => {
 const mapStateToProps = state => ({
   username: usernameSelector(state),
   pic: state.account.pic,
-  comments: state.catalog.comment,
-  currentFilm: currentFilmSelector(state)
+  comments: commentsSelector(state),
+  currentFilm: currentFilmSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   commentRequested: comment => dispatch(commentRequested(comment)),
-  commentGetRequested: (id) => dispatch(commentGetRequested(id)),
+  commentGetRequested: id => dispatch(commentGetRequested(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentContainer);

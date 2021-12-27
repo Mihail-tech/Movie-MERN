@@ -24,18 +24,7 @@ console.log(value)
     name === 'email' && setEmail(value);
   };
 
-  // const handleSubmit = () => {
-  //     props.updateUser();
-  //     history.push("/");
-  // };
-
-  //   const updatePic = pic => {
-  //     if (pic.type === 'image/jpeg' || pic.type === 'image/png') {
-  //       const file = e.target.files[0];
-  //       const formData = new FormData();
-  //       formData.append('file', file, file.name);
-  //     }
-  //   };
+ 
   const handleFileUpdate = (e) => {
       const file = e.target.files[0];
 
@@ -62,10 +51,10 @@ console.log(value)
   };
 
 
-  const profileProps = {
+  const settingProps = {
     username,
     email,
-    password,
+    // password,
     pic,
     handleUpdate,
     handleChange,
@@ -73,20 +62,20 @@ console.log(value)
     // updatePic,
   };
 
-  return <Setting {...profileProps} settingErrors={props.settingErrors} />;
+  return <Setting {...settingProps} settingErrors={props.settingErrors} />;
 };
 
 const mapStateToProps = state => ({
   username: usernameSelector(state),
   email: emailSelector(state),
-  password: passwordSelector(state),
+  // password: passwordSelector(state),
   pic: picSelector(state),
   settingErrors: settingErrorsSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   updateUser: (user) => dispatch(userUpdateRequested(user)),
-  updateAvatar: data => dispatch(avatarUpdateRequested(data)),
+  updateAvatar: (data) => dispatch(avatarUpdateRequested(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingContainer);

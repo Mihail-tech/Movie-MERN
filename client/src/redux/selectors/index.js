@@ -13,6 +13,7 @@ const pic = state => state.account.pic;
 const email = state => state.account.email;
 const password = state => state.account.password;
 const settingErrors = state => state.setting.errors;
+const comments = state => state.catalog.comment;
 
 export const loginErrorsSelector = createSelector(
     loginErrors,
@@ -76,5 +77,10 @@ export const passwordSelector = createSelector(
 
 export const settingErrorsSelector = createSelector(
     settingErrors,
+    item => item
+);
+
+export const commentsSelector = createSelector(
+    comments,
     item => item
 );
