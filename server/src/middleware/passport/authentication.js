@@ -12,18 +12,5 @@ export const authenticate = (req, res, next) => {
     }
   })(req, res, next);
 };
-
 // check if has permission (token)
-export const authorize = (req, res, next) => {
-  passport.authenticate('jwt', { session: false }, async (err, user) => {
-    console.log(user, 'user');
-    console.log(err, 'erros');
-    if (err) {
-      return next(err);
-    } else if (!user) {
-      return res.status(401).send('Invalid token');
-    } else {
-      return next();
-    }
-  })(req, res, next);
-};
+export const authorize = passport.authenticate('jwt', { session: false });

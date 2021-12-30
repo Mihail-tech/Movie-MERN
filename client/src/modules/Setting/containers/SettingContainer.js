@@ -11,6 +11,7 @@ const SettingContainer = props => {
   const [password, setPassword] = useState(props.password);
   // const [confirmPassword, setConfirmPassword] = useState('');
   const [pic, setPic] = useState(props.pic);
+  const [state, setState] = useState({correctFile:null});
 console.log(props)
   // const submitHandler = (event) => {
   //     event.preventDefault();
@@ -26,26 +27,37 @@ console.log(value)
 
  
   const handleFileUpdate = (e) => {
-      const file = e.target.files[0];
+    console.log(e.target.files)
+      // e.target.files = null;
+      const files = e.target.files[0];
+      console.log(files, ' aaaa')
 
-      const formData = new FormData();
-      formData.append('file', file, file.name);
+      // const formData = new FormData();
+      // formData.append('file', file, file.name);
+      const reader = new FileReader();
+      reader.onload = () => {
+        setState({ correctFile: reader.result })
+        
+     }
+      reader.readAsDataURL(files);
+      
 
-      console.log(formData)
+      console.log(reader, 'bbbb')
 
-      props.updateAvatar(formData);
+      props.updateAvatar(reader);
 
-      e.target.files = null;
   };
 
   const handleUpdate = () => {
     // event.preventDefault();
+    const newFile = {Filebase64: state.correctFile}
     console.log('fucking code')
     props.updateUser({
       username,
       email,
       // password,
-      pic
+      pic,
+      newFile
     });
     
   };

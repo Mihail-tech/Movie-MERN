@@ -77,7 +77,7 @@ const Setting = props => {
                   <input 
                     id= "pic"
                     type = "file"
-                    
+                    name = "file"
                     accept="image/*"
                     onChange={e => handleFileUpdate(e)}
                     ></input>

@@ -3,53 +3,35 @@ import mongoose from 'mongoose';
 import Uuid from 'uuid';
 
 export const postSetting = async (req, res, next) => {
-    console.log({id: req.user})
-    try {
-        const user = await User.findByIdAndUpdate({_id: req.user._id}, {username: req.body.username, email: req.body.email, pic: req.body.pic}, {new:true});
-// console.log(req.body._id, 'user')
-console.log({id: req.body._id});
-// console.log(user.name, 'user.name')
-        // if(user) {
-        //     user.username = req.body.username || user.username;
-        //     user.email = req.body.email || user.email;
-        //     // user.password = req.body.password || user.password;
-        //     user.pic = req.body.pic || user.pic;
-        // };
-
-        // if(req.body.password) {
-        //     user.password = req.body.password;
-        // };
-// console.log(user, 'user1')
-        // const updateUser = await user.save();
-        console.log(updateUser, 'updateuser')
-
-         res.json({
-            //  _id: updateUser._id,
-             username: updateUser.username,
-             email: updateUser.email,
-            //  password: updateUser.password,
-             pic: updateUser._id,
-         })
-
-    } catch (err) {
-        console.log(err)
-        next(err.message);
-    }
+  console.log({ id: req.user });
+  try {
+    const user = await User.findByIdAndUpdate(
+      { _id: req.user._id },
+      { username: req.body.username, email: req.body.email, pic: req.body.pic },
+      { new: true }
+    );
+    res.send(user);
+  } catch (err) {
+    console.log(err);
+    next(err.message);
+  }
 };
 
 export const updatePic = async (req, res, next) => {
-
-    try {
-        console.log(req.files.file.name)
-        const file = req.files.file.name
-        const user = await User.find({ _id: mongoose.Types.ObjectId() }); 
-        const avatarName = Uuid + 'jpg';
-        file.mv(('public') + '\\' + avatarName);
-        user.pic = avatarName;
-        await user.save();
-
-    } catch (err) {
-        console.log(err)
-        next(err.message);
-    }
+    console.log(req.user)
+    
+  try {
+    console.log(req.files.file, 'file');
+    const file = req.files.file;
+    const user = await User.findByIdAndUpdate({ _id: mongoose.Types.ObjectId() }, { new: true });
+    const avatarName = file.name ;
+    console.log({avatarName: avatarName})
+    file.mv('public/images/avatars' + '\\' + avatarName);
+    // user.pic = avatarName;
+    // console.log({userPic: user.pic})
+    await user.save();
+  } catch (err) {
+    console.log(err);
+    next(err.message);
+  }
 };
