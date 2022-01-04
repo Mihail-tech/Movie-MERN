@@ -18,7 +18,7 @@ export const postSetting = async (req, res, next) => {
 };
 
 export const updatePic = async (req, res, next) => {
-    console.log(req.user)
+  console.log({ id: req.user });
     
   try {
     console.log(req.files.file, 'file');
@@ -29,7 +29,8 @@ export const updatePic = async (req, res, next) => {
     file.mv('public/images/avatars' + '\\' + avatarName);
     // user.pic = avatarName;
     // console.log({userPic: user.pic})
-    await user.save();
+    // await user.save();
+    await res.send(user);
   } catch (err) {
     console.log(err);
     next(err.message);

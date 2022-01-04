@@ -9,12 +9,12 @@ const setting = async (data, token) => {
       });
 };
 
-const updatePic = async (formData, token) => {
-  console.log(formData, 'send on back2')
+const updatePic = async (FileReader, token) => {
+  console.log(FileReader, 'send on back2')
     return await service.put('/setting/updatePic',  {
         headers: {
           Authorization: `Bearer ${token}`,
-        }, formData
+        }, FileReader
       });
 };
 
