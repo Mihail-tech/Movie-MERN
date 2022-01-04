@@ -10,11 +10,15 @@ const setting = async (data, token) => {
 };
 
 const updatePic = async (FileReader, token) => {
-  console.log(FileReader, 'send on back2')
+  // console.log(FileReader, 'send on back2')
+  const {result} = FileReader;
+  const data = {data:result}
+  console.log(data, 'data2')
+  console.log(result, 'result')
     return await service.put('/setting/updatePic',  {
         headers: {
           Authorization: `Bearer ${token}`,
-        }, FileReader
+        }, data
       });
 };
 

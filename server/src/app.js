@@ -4,6 +4,7 @@ import createError from 'http-errors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import fileUploader from 'express-fileupload';
+import multer from 'multer';
 
 import connectToMongoose from './models/db';
 import configurePassport from './middleware/passport';

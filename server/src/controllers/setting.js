@@ -16,17 +16,18 @@ export const postSetting = async (req, res, next) => {
     next(err.message);
   }
 };
-
+//https://cloudinary.com/https-www-itechart-by/image/upload/
 export const updatePic = async (req, res, next) => {
-  console.log({ id: req.user });
+  console.log({ id: req.params.id });
+  console.log(req.body.data , 'data')
     
   try {
-    console.log(req.files.file, 'file');
-    const file = req.files.file;
-    const user = await User.findByIdAndUpdate({ _id: mongoose.Types.ObjectId() }, { new: true });
-    const avatarName = file.name ;
-    console.log({avatarName: avatarName})
-    file.mv('public/images/avatars' + '\\' + avatarName);
+    // console.log(req.files.file, 'file');
+    const file = req.body.data;
+    const user = await User.findByIdAndUpdate({ _id: mongoose.Types.ObjectId() }, {pic: file}, { new: true });
+    // const avatarName = file.name ;
+    // console.log({avatarName: avatarName})
+    // file.mv('public/images/avatars' + '\\' + avatarName);
     // user.pic = avatarName;
     // console.log({userPic: user.pic})
     // await user.save();

@@ -12,7 +12,7 @@ function* updatePicWorker(action) {
     const token = yield select(getToken);
 
     const response = yield call(setting.updatePic, action.payload, token);
-    console.log(response.data, 'data')
+    console.log(response.data, 'response.data')
     yield put(avatarUpdateSucceeded(response.data));
   } catch (err) {
 
