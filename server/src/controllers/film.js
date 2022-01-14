@@ -1,8 +1,8 @@
 import Film from '../models/film';
 
-export const getFilms = async (req, res, next) => {
+export const getFilms = async (req, res) => {
   try {
-    const pageSize = 10;
+    const pageSize = 14;
     const page = req.query.page;
 
     const searchConditions = {};
@@ -43,7 +43,6 @@ export const getFilms = async (req, res, next) => {
         description: 1,
         year: 1,
         rating: 1,
-        
       },
       {
         skip: pageSize * (page - 1),
@@ -54,17 +53,15 @@ export const getFilms = async (req, res, next) => {
 
     res.send({ hasMore, films: docs });
   } catch (err) {
-    next(err);
+    res.status(400).json(err.message);
   }
 };
 
-
 export const film = async (req, res) => {
-  const id = req.params.id
   try {
-  const data = await Film.findById({_id:id});
-  res.json(data);
+    const data = await Film.findById({ _id: req.params.id });
+    res.send(data);
   } catch (error) {
-    res.status(400).json({message:error})
+    res.status(400).json({ message: error });
   }
 };

@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 
 import Catalog from '../views/Catalog';
 import { getCategoriesRequested, getFilmsRequested, cleanFilms, updateCatalogSettings } from '../actions';
-import {settingsSelector, categoriesErrorSelector, filmsErrorSelector} from '../../../redux/selectors';
+import { settingsSelector, categoriesErrorSelector, filmsErrorSelector } from '../../../redux/selectors';
 
 const CatalogContainer = props => {
   const { updateSettings, cleanFilms, getCategories, getFilms, settings, filmsError, categoriesError } = props;
+  
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleNextPage = () => {

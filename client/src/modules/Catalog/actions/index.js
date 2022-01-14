@@ -24,3 +24,7 @@ export const cleanFilms = createAction('FILMS_CLEAN');
 
 export const updateCatalogSettings = createAction('CATALOG_SETTINGS_UPDATE');
 export const updateHasMore = createAction('HAS_MORE_UPDATE');
+
+export const updateRatingRequest = createAction("UPDATE_RATING_REQUEST");
+export const updateRatingSuccess = createAction("UPDATE_RATING_SUCCESS");
+export const updateRatingFail = createAction("UPDATE_RATING_FAIL");

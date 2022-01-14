@@ -1,18 +1,18 @@
 import React from 'react';
 import useStyles from './styles';
 import PropTypes from 'prop-types';
-import { Button, Typography, Avatar, TextField } from '@material-ui/core';
+import { Button, Typography, TextField, Avatar  } from '@material-ui/core';
 
 const Comment = props => {
   const classes = useStyles();
-  const { pic, comments, comment, setComment, handleComment } = props;
-  console.log(props.comments, 'view');
+  const { comments, comment, setComment, handleComment } = props;
+
   return (
     <div>
       {comments.map((comment, index) => (
         <form>
           <div className={classes.comment}>
-            {/* <Avatar src={pic} alt='avatar' className={classes.image} /> */}
+            <Avatar  src={props.pic}  />
             <Typography variant='h6' className={classes.username}>
               {comment.writer}:
             </Typography>
@@ -42,10 +42,9 @@ const Comment = props => {
 };
 
 Comment.propTypes = {
-  pic: PropTypes.string,
-  comment: PropTypes.string,
-  comments: PropTypes.array,
-  handleComment: PropTypes.func,
+  // comment: PropTypes.string.isRequired,
+  // comments: PropTypes.array.isRequired,
+  handleComment: PropTypes.func.isRequired,
 };
 
 export default Comment;

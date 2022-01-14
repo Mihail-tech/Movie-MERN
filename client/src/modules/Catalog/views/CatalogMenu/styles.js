@@ -10,7 +10,7 @@ export const useStyles = makeStyles(theme => ({
     display: 'grid',
     gridTemplateRows: '1fr 1fr 3fr',
     width: '260px',
-    height: '560px',
+    height: '200px',
     margin: theme.spacing(3),
     boxShadow: '0 8px 30px 0 rgba(0,0,0,0.1)',
   },

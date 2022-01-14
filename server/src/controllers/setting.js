@@ -1,9 +1,7 @@
 import User from '../models/user';
 import mongoose from 'mongoose';
-import Uuid from 'uuid';
 
-export const postSetting = async (req, res, next) => {
-  console.log({ id: req.user });
+export const postSetting = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(
       { _id: req.user._id },
@@ -12,28 +10,19 @@ export const postSetting = async (req, res, next) => {
     );
     res.send(user);
   } catch (err) {
-    console.log(err);
-    next(err.message);
+    res.status(400).json(err.message);
   }
 };
-//https://cloudinary.com/https-www-itechart-by/image/upload/
-export const updatePic = async (req, res, next) => {
-  console.log({ id: req.params.id });
-  console.log(req.body.data , 'data')
-    
+
+export const updatePic = async (req, res) => {
   try {
-    // console.log(req.files.file, 'file');
-    const file = req.body.data;
-    const user = await User.findByIdAndUpdate({ _id: mongoose.Types.ObjectId() }, {pic: file}, { new: true });
-    // const avatarName = file.name ;
-    // console.log({avatarName: avatarName})
-    // file.mv('public/images/avatars' + '\\' + avatarName);
-    // user.pic = avatarName;
-    // console.log({userPic: user.pic})
-    // await user.save();
-    await res.send(user);
+    const user = await User.findByIdAndUpdate(
+      { _id: mongoose.Types.ObjectId(req.user._id) },
+      { pic: req.body.data },
+      { new: true }
+    );
+    res.send(user);
   } catch (err) {
-    console.log(err);
-    next(err.message);
+    res.status(400).json(err.message);
   }
 };

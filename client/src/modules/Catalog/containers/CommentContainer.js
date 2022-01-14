@@ -4,45 +4,43 @@ import { useParams } from 'react-router';
 
 import Comment from '../views/Comment';
 import { commentRequested, commentGetRequested } from '../actions';
-import { currentFilmSelector, usernameSelector, commentsSelector } from '../../../redux/selectors';
+import { currentFilmSelector, usernameSelector, commentsSelector, picSelector } from '../../../redux/selectors';
 
 const CommentContainer = props => {
-  const { username } = props;
+  const { username, commentGetRequested, commentRequested, comments, currentFilm } = props;
 
   const [comment, setComment] = useState('');
 
   const { id } = useParams();
-  console.log(props.comments);
 
   useEffect(() => {
-    props.commentGetRequested(id);
+    commentGetRequested(id);
   }, []);
 
   const handleComment = () => {
-    const finalComment = { writer: username, content: comment, filmId: props.currentFilm._id };
-    console.log(finalComment, 'comment output');
-    props.commentRequested(finalComment);
-
+    const finalComment = { writer: username, content: comment, filmId: currentFilm._id , pic:props.pic};
+    console.log(finalComment)
+    commentRequested(finalComment);
     setComment('');
   };
 
   return (
     <Comment
       username={username}
-      pic={props.pic}
       comment={comment}
       setComment={setComment}
       handleComment={handleComment}
-      comments={props.comments}
+      comments={comments}
+      pic={props.pic}
     />
   );
 };
 
 const mapStateToProps = state => ({
   username: usernameSelector(state),
-  pic: state.account.pic,
   comments: commentsSelector(state),
   currentFilm: currentFilmSelector(state),
+  pic: picSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({

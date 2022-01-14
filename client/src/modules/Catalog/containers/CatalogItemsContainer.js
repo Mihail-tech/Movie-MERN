@@ -1,19 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import CatalogItems from '../views/CatalogItems';
-import {filmsSelector} from '../../../redux/selectors';
+import { filmsSelector } from '../../../redux/selectors';
 
 const CatalogItemsContainer = props => {
-  const {films, handleNextPage} = props;
+  const { films, handleNextPage } = props;
 
+  const [value, setValue] = useState('');
+
+  const filteredItems = films.items.filter(film => {
+    return film.title.toLowerCase().includes(value.toLowerCase());
+  });
+  
   return (
     <CatalogItems
       films={films.items}
       loading={films.loading}
       hasMore={films.hasMore}
       handleNextPage={handleNextPage}
+      setValue={setValue}
+      filteredItems={filteredItems}
     />
   );
 };
@@ -21,9 +28,5 @@ const CatalogItemsContainer = props => {
 const mapStateToProps = state => ({
   films: filmsSelector(state),
 });
-
-CatalogItemsContainer.propTypes = {
-  handleNextPage: PropTypes.func.isRequired,
-};
 
 export default connect(mapStateToProps)(CatalogItemsContainer);

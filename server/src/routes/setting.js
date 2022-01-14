@@ -6,11 +6,6 @@ import { postSetting, updatePic } from '../controllers/setting';
 const router = express.Router();
 
 router.put('/', authorize, postSetting);
-router.put('/updatePic', updatePic);
-
-
-router.use((err, req, res, next) => {
-  next(err);
-});
+router.put('/updatePic', authorize, updatePic);
 
 export default router;

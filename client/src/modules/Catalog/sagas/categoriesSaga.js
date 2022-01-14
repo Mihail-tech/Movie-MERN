@@ -1,4 +1,3 @@
-
 import { call, put, select, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
 import { catalog } from '../../../api/requests';

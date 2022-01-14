@@ -6,16 +6,14 @@ import {commentGetSucceeded, commentGetFailed, commentGetRequested} from '../act
 const getToken = state => state.account.token;
 
 function* commentGetWorker(action) {
-    console.log(action, 'get facking action')
   try {
     const token = yield select(getToken);
 
     const response = yield call(catalog.comments, action.payload, token);
-    console.log(response.data, 'get facking response')
     yield put(commentGetSucceeded(response.data));
 
   } catch (err) {
-    yield put(commentGetFailed(err.response.data));
+    yield put(commentGetFailed(err));
   }
 };
 

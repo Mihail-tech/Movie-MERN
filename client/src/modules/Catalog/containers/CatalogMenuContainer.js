@@ -16,14 +16,6 @@ const {handleSettings, categories} = props;
     },
   });
 
-  const handleInput = event => {
-    const value = event.target.value;
-    if (value !== state.currentSearchInput) {
-      handleSettings({ search: value });
-    }
-    setState({ currentSearchInput: value });
-  };
-
   const handleChange = event => {
     setState(state => ({
       sortValues: {
@@ -39,7 +31,6 @@ const {handleSettings, categories} = props;
       categories={categories.items}
       loading={categories.loading}
       sortValues={state.sortValues}
-      handleInput={handleInput}
       handleChange={handleChange}
     />
   );

@@ -1,32 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Typography, TextField, Select, MenuItem, InputLabel, FormControl, Container} from '@material-ui/core/';
+import {Typography, Select, MenuItem, InputLabel, FormControl, Container} from '@material-ui/core/';
 
 import { useStyles } from './styles';
 
 const CatalogMenu = (props) => {
   const classes = useStyles();
-  const {loading, handleInput, sortValues, handleChange  } = props;
+  const {loading, sortValues, handleChange  } = props;
 
   return loading ? (
     <Typography className={classes.loading}>Loading...</Typography>
   ) : (
     <Container className={classes.menuContainer}>
-      <Container className={classes.menuSearch}>
-        <TextField
-          type='search'
-          id='search'
-          label='Search'
-          margin='normal'
-          className={classes.searchField}
-          onChange={handleInput}
-        />
-      </Container>
       <Container className={classes.menuSort}>
         <FormControl >
           <InputLabel htmlFor='sort'>Sort by</InputLabel>
           <Select
-            value={sortValues?.sort}
+            value={sortValues.sort}
             onChange={handleChange}
             inputProps={{
               name: 'sort',
@@ -40,7 +30,7 @@ const CatalogMenu = (props) => {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor='order'>Order</InputLabel>
           <Select
-            value={sortValues?.order}
+            value={sortValues.order}
             onChange={handleChange}
             inputProps={{
               name: 'order',

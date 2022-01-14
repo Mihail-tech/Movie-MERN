@@ -6,8 +6,4 @@ const router = express.Router();
 
 router.get('/', authorize, getCategories);
 
-router.use((err, req, res, next) => {
-  next(err);
-});
-
 export default router;

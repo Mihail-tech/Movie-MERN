@@ -1,45 +1,42 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import PropTypes from 'prop-types';
-import { Avatar, Button, CardContent, TextField, Typography, Container,  } from '@material-ui/core';
+import { Avatar, Button, CardContent, TextField, Typography, Container } from '@material-ui/core';
 
 import { useStyles } from './style';
 import { ProtectedLayout } from '../../../layouts';
+import validationSettingSchema from '../util/validate';
 
 const Setting = props => {
   const classes = useStyles();
-  const {username, email, password, pic, handleUpdate,handleChange, handleFileUpdate} = props;
+  const { username, email, pic, handleUpdate, handleFileUpdate } = props;
 
-  console.log(props)
   return (
     <ProtectedLayout>
       <div className={classes.block}>
-        <Container className={classes.formBlock} >
-          <Avatar className={classes.avatarPic} src={pic} alt="avatar" />
+        <Container className={classes.formBlock}>
+          <Avatar className={classes.avatarPic} src={pic} alt='avatar' />
           <Formik
+          validationSchema= {validationSettingSchema}
             onSubmit={handleUpdate}
-            initialValue={{
+            initialValues={{
               username: username,
               email: email,
-              // password: password,
+              pic: pic,
             }}>
-            {({  handleBlur, handleSubmit }) => (
+            {({ handleBlur, handleSubmit, handleChange, errors, touched }) => (
               <Form onSubmit={handleSubmit}>
                 <CardContent>
-                  <Typography variant='h5'>Name  </Typography>
+                  <Typography variant='h5'>Name </Typography>
                   <TextField
                     type='text'
                     variant='standard'
-                    name = 'username'
+                    name='username'
                     label={username}
-                    //  value={username}
+                    value={props?.values?.username}
                     onBlur={handleBlur('username')}
-                    onChange={e => {
-                      handleChange(e)
-                      // handleUpdate(e);
-                    }}
-                    >
-                    </TextField>
+                    onChange={handleChange}></TextField>
+                    {errors.username && touched.username && <div className={classes.errorMessage}>{errors.username}</div>}
                 </CardContent>
                 <CardContent>
                   <Typography variant='h5'>Email</Typography>
@@ -48,45 +45,26 @@ const Setting = props => {
                     variant='standard'
                     name='email'
                     label={email}
-                    // value={email}
+                    value={props?.values?.email}
                     onBlur={handleBlur('email')}
-                    onChange={e => {
-                      handleChange(e);
-                    // handleUpdate(e);
-                    }}
-                    ></TextField>
+                    onChange={handleChange}></TextField>
+                     {errors.email && touched.email && <div className={classes.errorMessage}>{errors.email}</div>}
                 </CardContent>
-                {/* <CardContent>
-                  <Typography variant='h5'>Password</Typography>
-                  <TextField type='password' variant='standard' name='password'
-                    // value={password}
-                    onBlur={handleBlur('password')}
-                    onChange={e => {
-                    //   handleChange(e);
-                    handleUpdate(e);
-                    }}
-                    ></TextField>
-                </CardContent>
-                <CardContent>
-                  <Typography variant='h5'>Confirm Password</Typography>
-                  <TextField type='password' variant='standard' name='password'
-                   ></TextField>
-                </CardContent> */}
                 <CardContent>
                   <Typography variant='h5'>Change avatar</Typography>
                   <input 
-                    id= "pic"
-                    type = "file"
-                    name = "file"
-                    accept="image/*"
-                    onChange={e => handleFileUpdate(e)}
-                    ></input>
+                    id='pic' 
+                    type='file' 
+                    name='file' 
+                    accept='image/*' 
+                    onChange={e => handleFileUpdate(e)}>
+                  </input>
                 </CardContent>
                 <div className={classes.buttonBlock}>
-            <Button type='submit' variant='contained' className={classes.updateButton}>
-              Update
-            </Button>
-          </div>
+                  <Button type='submit' variant='contained' className={classes.updateButton}>
+                    Update
+                  </Button>
+                </div>
               </Form>
             )}
           </Formik>
@@ -97,13 +75,12 @@ const Setting = props => {
 };
 
 Setting.propTypes = {
-    username: PropTypes.string ,
-    email: PropTypes.string ,
-    // saveChange: PropTypes.func ,
-    handleChange: PropTypes.func ,
-    handleUpdate: PropTypes.func,
-    handleBlur: PropTypes.func,
-    handleFileUpdate: PropTypes.func,
-}
+  username: PropTypes.string,
+  email: PropTypes.string,
+  handleChange: PropTypes.func,
+  handleUpdate: PropTypes.func,
+  handleBlur: PropTypes.func,
+  handleFileUpdate: PropTypes.func,
+};
 
 export default Setting;

@@ -7,6 +7,7 @@ import { history } from '../../../redux/store';
 import {usernameSelector, picSelector} from '../../../redux/selectors';
 
 const HeaderContainer = props => {
+  const {logoutUser, pic, username} = props;
   const [open, setOpen] = useState(true);
 
   const handleClick = () => {
@@ -14,7 +15,7 @@ const HeaderContainer = props => {
   };
 
   const handleLogOut = () => {
-    props.logoutUser();
+    logoutUser();
     history.push('/login');
   };
 
@@ -22,8 +23,8 @@ const HeaderContainer = props => {
 
   return (
     <Header
-      username={props.username}
-      pic={props.pic}
+      username={username}
+      pic={pic}
       logOut={handleLogOut}
       handleMain={handleMain}
       handleClick={handleClick}

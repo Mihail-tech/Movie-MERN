@@ -72,5 +72,8 @@ export const useStyles = makeStyles(theme => ({
   },
   button: {
     textDecoration: 'overline',
-  }
+  },
+  menuSearch: {
+    padding: theme.spacing(1),
+  },
 }));

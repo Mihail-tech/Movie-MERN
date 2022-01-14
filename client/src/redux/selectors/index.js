@@ -9,6 +9,9 @@ const films = state => state.catalog.films;
 const categories = state => state.catalog.categories;
 const currentFilm = state => state.catalog.film;
 const username = state => state.account.username;
+const usernameSetting = state => state.setting.username;
+const emailSetting = state => state.setting.email;
+const picSetting = state => state.setting.pic;
 const pic = state => state.account.pic;
 const email = state => state.account.email;
 const password = state => state.account.password;
@@ -60,13 +63,28 @@ export const usernameSelector = createSelector(
     item => item 
 );
 
+export const usernameSettingSelector = createSelector(
+    usernameSetting,
+    item => item
+);
+
 export const picSelector = createSelector(
     pic,
     item => item
 );
 
+export const picSettingSelector = createSelector(
+    picSetting,
+    item => item
+);
+
 export const emailSelector = createSelector(
     email,
+    item => item
+);
+
+export const emailSettingSelector = createSelector(
+    emailSetting,
     item => item
 );
 

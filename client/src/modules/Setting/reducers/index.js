@@ -20,10 +20,10 @@ const settingReducer = handleActions(
       state,
       processing: true,
     }),
-    [userUpdateSucceeded]: (state, action) => ({
-      processing: true,
-      ...action.payload,
-    }),
+    [userUpdateSucceeded]: (state, action) => {
+      const data = { processing: true, ...action.payload };
+      return data;
+    },
     [userUpdateFailed]: (state, action) => ({
       processing: false,
       errors: [...action.payload],
@@ -32,10 +32,9 @@ const settingReducer = handleActions(
       state,
       processing: true,
     }),
-    [avatarUpdateSucceeded]: (state, action) => ({
-      processing: true,
-      ...action.payload,
-    }),
+    [avatarUpdateSucceeded]: (state, action) => {
+      return { processing: true, ...action.payload };
+    },
     [avatarUpdateFailed]: (state, action) => ({
       processing: false,
       errors: [...action.payload],

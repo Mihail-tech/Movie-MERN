@@ -1,6 +1,6 @@
 import FilmCategory from '../models/filmCategory';
 
-export const getCategories = async (req, res, next) => {
+export const getCategories = async (req, res) => {
   try {
     const docs = await FilmCategory.find(
       {},
@@ -16,6 +16,6 @@ export const getCategories = async (req, res, next) => {
     );
     res.send(docs);
   } catch (err) {
-    next(err);
+    res.status(400).json(err.message);
   }
 };

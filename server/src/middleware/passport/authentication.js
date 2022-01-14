@@ -1,6 +1,6 @@
 import passport from 'passport';
 
-// check credentials
+
 export const authenticate = (req, res, next) => {
   passport.authenticate('local', { session: false }, (err, user) => {
     if (err) {
@@ -12,5 +12,5 @@ export const authenticate = (req, res, next) => {
     }
   })(req, res, next);
 };
-// check if has permission (token)
+
 export const authorize = passport.authenticate('jwt', { session: false });

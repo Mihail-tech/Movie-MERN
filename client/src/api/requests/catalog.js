@@ -25,7 +25,6 @@ const filmId = async (token, id) => {
 };
 
 const comment = async ( data, token) => {
-  console.log(data, 'data url for back')
   return await service.post(`/films/comment`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -34,7 +33,6 @@ const comment = async ( data, token) => {
 };
 
 const comments = async ( id, token) => {
-  console.log(id, 'facking send for back')
   return await service.get(`/films/comments/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
