@@ -7,6 +7,7 @@ const CommentSchema = new mongoose.Schema({
     type: String,
     ref: 'Film',
   },
+  pic:{ type:String, ref: 'User'}
 });
 
 const Comment = mongoose.model('Comment', CommentSchema, 'Comment');

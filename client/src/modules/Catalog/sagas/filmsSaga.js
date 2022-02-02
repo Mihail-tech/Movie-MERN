@@ -18,6 +18,7 @@ function* filmsWorker(action) {
     query = query.slice(0, -1);
 
     const response = yield call(catalog.getFilms, token, query);
+    
     yield put(getFilmsSucceeded(response.data.films));
     yield put(updateHasMore(response.data.hasMore));
   } catch (err) {

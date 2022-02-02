@@ -1,14 +1,13 @@
 import React from 'react';
 import { Typography, Divider, Container, CardContent, Card } from '@material-ui/core/';
 import PropTypes from 'prop-types';
-import Rating from "@material-ui/lab/Rating";
+import Rating from '@material-ui/lab/Rating';
 
 import { useStyles } from './styles';
 import { ProtectedLayout } from '../../../../layouts';
-import { ReactComponent as Star } from '../../../../static/images/star-solid.svg';
 import CommentContainer from '../../containers/CommentContainer';
 
-const CurrentFilm = ({ film, handleRatingChange }) => {
+const CurrentFilm = ({ film, handleRatingChange, rating, length, message }) => {
   const classes = useStyles();
 
   return (
@@ -20,22 +19,14 @@ const CurrentFilm = ({ film, handleRatingChange }) => {
             <Typography className={classes.title}>{film.title}</Typography>
             <Typography className={classes.subtitle1}>{film.year}</Typography>
             <Typography className={classes.text}>{film.description}</Typography>
-            {/* {film.rating ? (
+
+            {rating ? (
               <Typography className={classes.subtitle2}>
-                <Star className={classes.star} />
-                {film.rating}
+                <Rating name='simple-controlled' value={rating} precision={0.2} onChange={handleRatingChange} />
               </Typography>
-            ) : null} */}
-            {film.rating ? (
-              <Typography className={classes.subtitle2}>
-              <Rating name="simple-controlled"
-                                value={film.rating}
-                                onChange={handleRatingChange}/>
-              </Typography>
-            ): null}
-           {/* <Rating name="simple-controlled"
-                                value={film.rating}
-                                onChange={handleRatingChange}/> */}
+            ) : null}
+            <Typography>{message}</Typography>
+            <span>Total voted: {length}</span>
             <Divider className={classes.divider} light />
             <Typography>
               <h3>Comments:</h3>
@@ -52,7 +43,6 @@ CurrentFilm.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   year: PropTypes.number,
-  rating: PropTypes.number,
 };
 
 export default CurrentFilm;

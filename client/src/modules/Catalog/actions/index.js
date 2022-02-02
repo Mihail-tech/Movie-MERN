@@ -28,3 +28,7 @@ export const updateHasMore = createAction('HAS_MORE_UPDATE');
 export const updateRatingRequest = createAction("UPDATE_RATING_REQUEST");
 export const updateRatingSuccess = createAction("UPDATE_RATING_SUCCESS");
 export const updateRatingFail = createAction("UPDATE_RATING_FAIL");
+
+export const updateRatingGetRequest = createAction("UPDATE_RATING_GET_REQUEST");
+export const updateRatingGetSuccess = createAction("UPDATE_RATING_GET_SUCCESS");
+export const updateRatingGetFail = createAction("UPDATE_RATING_GET_FAIL");

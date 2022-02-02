@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import {unsetCurrentUser} from '../actions';
 import {loginUserSucceeded} from '../../Login/actions';
+import {avatarUpdateSucceeded} from '../../Setting/action';
 
 const initialState = {
   username: '',
@@ -16,7 +17,12 @@ const accountReducer = handleActions(
       ...action.payload
     }),
     [unsetCurrentUser]: (state, action) => initialState,
+    [avatarUpdateSucceeded]: (state, action) => {
+      return {...state, processing: true, pic:action.payload.pic };
+    },
+    
   },
+  
   initialState
 );
 

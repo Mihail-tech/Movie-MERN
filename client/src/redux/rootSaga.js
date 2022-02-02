@@ -9,6 +9,8 @@ import SettingSaga from '../modules/Setting/sagas/settingSaga';
 import UpdatePic from '../modules/Setting/sagas/updatePicSaga';
 import CommentSaga from '../modules/Catalog/sagas/commentSaga';
 import CommentGetSaga from '../modules/Catalog/sagas/commentGetSaga';
+import RatingSaga from '../modules/Catalog/sagas/ratingSaga';
+import RatingGetSaga from '../modules/Catalog/sagas/ratingGetSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -20,6 +22,8 @@ export default function* rootSaga() {
     CommentSaga(),
     SettingSaga(),
     UpdatePic(),
-    CommentGetSaga()
+    CommentGetSaga(),
+    RatingSaga(),
+    RatingGetSaga()
   ]);
 }

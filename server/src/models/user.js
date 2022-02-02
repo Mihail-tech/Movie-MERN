@@ -5,7 +5,7 @@ import { encryptData } from '../util/encryption';
 import { secret } from '../middleware/passport/config';
 
 const userSchema = new mongoose.Schema({
-  _id: mongoose.SchemaTypes.ObjectId,
+  _id: mongoose.Schema.Types.ObjectId,
   username: {
     type: String,
     required: true,

@@ -3,32 +3,39 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 
 import CurrentFilm from '../views/CurrentFilm';
-import { getFilmRequested, updateRatingRequest } from '../actions';
-import {currentFilmSelector} from '../../../redux/selectors';
+import { getFilmRequested, updateRatingRequest, updateRatingGetRequest } from '../actions';
+import {currentFilmSelector, usernameSelector, ratingSelector, messageSelector} from '../../../redux/selectors';
 
 const CurrentFilmContainer = props => {
-  const { getFilmRequested, currentFilm } = props;
+  const { getFilmRequested, currentFilm, rating, updateRatingGetRequest, updateRatingRequest, username, message } = props;
   const { id } = useParams();
-
   useEffect(() => {
     getFilmRequested(id);
-  }, [id]);
+    updateRatingGetRequest(id)
+  }, []);
+
+
 
   const handleRatingChange =(e) => {
-    console.log(e.target.value)
-    updateRatingRequest({value:e.target.value, })
+    const finalRating ={user: username, rating:e.target.value, filmId: currentFilm._id}
+     updateRatingRequest(finalRating)
+     updateRatingGetRequest(id);
   }
 
-  return <CurrentFilm film={currentFilm} handleRatingChange={handleRatingChange} />;
+  return <CurrentFilm film={currentFilm} handleRatingChange={handleRatingChange} rating={rating} length={currentFilm.length} message={message} />;
 };
 
 const mapStateToProps = state => ({
   currentFilm: currentFilmSelector(state),
+  username: usernameSelector(state),
+  rating: ratingSelector(state), 
+  message: messageSelector(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   getFilmRequested: id => dispatch(getFilmRequested(id)),
-  updateRatingRequest: rating => dispatch(updateRatingRequest(rating))
+  updateRatingRequest: rating => dispatch(updateRatingRequest(rating)),
+  updateRatingGetRequest: id => dispatch(updateRatingGetRequest(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentFilmContainer);

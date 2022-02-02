@@ -15,9 +15,8 @@ const filmSchema = new mongoose.Schema({
     required: true,
   },
   rating: {
-    type: mongoose.SchemaTypes.Number,
-    required: false,
-    default: 0,
+    type: mongoose.Schema.Types.Number,
+    ref: 'Rating'
   },
 });
 

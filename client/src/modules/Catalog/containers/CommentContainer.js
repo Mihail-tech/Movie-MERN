@@ -7,7 +7,7 @@ import { commentRequested, commentGetRequested } from '../actions';
 import { currentFilmSelector, usernameSelector, commentsSelector, picSelector } from '../../../redux/selectors';
 
 const CommentContainer = props => {
-  const { username, commentGetRequested, commentRequested, comments, currentFilm } = props;
+  const { username, commentGetRequested, commentRequested, comments, currentFilm, pic } = props;
 
   const [comment, setComment] = useState('');
 
@@ -18,8 +18,7 @@ const CommentContainer = props => {
   }, []);
 
   const handleComment = () => {
-    const finalComment = { writer: username, content: comment, filmId: currentFilm._id , pic:props.pic};
-    console.log(finalComment)
+    const finalComment = { writer: username, content: comment, filmId: currentFilm._id, pic: pic };
     commentRequested(finalComment);
     setComment('');
   };
@@ -31,7 +30,7 @@ const CommentContainer = props => {
       setComment={setComment}
       handleComment={handleComment}
       comments={comments}
-      pic={props.pic}
+      pic={pic}
     />
   );
 };

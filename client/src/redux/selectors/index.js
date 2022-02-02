@@ -17,6 +17,8 @@ const email = state => state.account.email;
 const password = state => state.account.password;
 const settingErrors = state => state.setting.errors;
 const comments = state => state.catalog.comment;
+const rating = state => state.catalog.film.rating;
+const message = state => state.catalog.film.message;
 
 export const loginErrorsSelector = createSelector(
     loginErrors,
@@ -100,5 +102,15 @@ export const settingErrorsSelector = createSelector(
 
 export const commentsSelector = createSelector(
     comments,
+    item => item
+);
+
+export const ratingSelector = createSelector(
+    rating,
+    item => item
+);
+
+export const messageSelector = createSelector(
+    message,
     item => item
 );

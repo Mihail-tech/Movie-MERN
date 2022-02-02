@@ -5,5 +5,7 @@ import comment from './catalog';
 import comments from './catalog';
 import setting from './setting';
 import updatePic from './setting';
+import rating from './catalog';
+import ratingGet from './catalog';
 
-export { auth, catalog, setting, updatePic, filmId, comment, comments };
+export { auth, catalog, setting, updatePic, filmId, comment, comments, rating, ratingGet };

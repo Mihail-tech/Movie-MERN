@@ -10,7 +10,7 @@ module.exports = {
           'A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ' +
           'ill-fated R.M.S. Titanic.',
         year: 1997,
-        rating: 7.8,
+        rating: 0,
         category: ObjectID('5d089d57a07666ef9cfed343'),
       },
       {
@@ -20,7 +20,7 @@ module.exports = {
           'A working-class Italian-American bouncer becomes the driver of an African-American classical pianist on ' +
           'a tour of venues through the 1960s American South.',
         year: 2018,
-        rating: 8.2,
+        rating: 0,
         category: ObjectID('5d089d57a07666ef9cfed345'),
       },
       {
@@ -30,7 +30,7 @@ module.exports = {
           'A writer and wall street trader, Nick, finds himself drawn to the past and lifestyle of his millionaire ' +
           'neighbor, Jay Gatsby.',
         year: 2013,
-        rating: 7.3,
+        rating: 0,
         category: ObjectID('5d089d57a07666ef9cfed345'),
       },
       {

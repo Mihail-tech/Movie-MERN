@@ -11,7 +11,7 @@ import {
 } from '../../../redux/selectors';
 
 const SettingContainer = props => {
-  const { username, email } = props;
+  const { username, email, updateAvatar, updateUser } = props;
 
   const [pic, setPic] = useState(props.pic);
 
@@ -21,13 +21,13 @@ const SettingContainer = props => {
     reader.readAsDataURL(files);
     reader.onload = () => {
       setPic(reader.result);
-      props.updateAvatar(reader);
+      updateAvatar(reader);
     };
   };
 
   const handleUpdate = values => {
     const { username, email, pic } = values;
-    props.updateUser({
+    updateUser({
       username,
       email,
       pic,

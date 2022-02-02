@@ -7,7 +7,7 @@ import { settingsSelector, categoriesErrorSelector, filmsErrorSelector } from '.
 
 const CatalogContainer = props => {
   const { updateSettings, cleanFilms, getCategories, getFilms, settings, filmsError, categoriesError } = props;
-  
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleNextPage = () => {

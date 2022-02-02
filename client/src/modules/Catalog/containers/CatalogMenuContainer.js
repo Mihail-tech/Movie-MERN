@@ -9,7 +9,6 @@ const CatalogMenuContainer = props => {
 const {handleSettings, categories} = props;
 
   const [state, setState] = useState({
-    currentSearchInput: '',
     sortValues: {
       sort: 'title',
       order: 1,

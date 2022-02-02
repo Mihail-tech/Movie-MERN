@@ -14,7 +14,6 @@ import {
 } from '@material-ui/core/';
 
 import { useStyles } from './styles';
-import { ReactComponent as Star } from '../../../../static/images/star-solid.svg';
 
 const CatalogItems = props => {
   const classes = useStyles();
@@ -42,10 +41,6 @@ const CatalogItems = props => {
             <Typography className={classes.subtitle1}>{film.year}</Typography>
             <Typography className={classes.text}>{film.description}</Typography>
             <Divider className={classes.divider} light />
-            <Typography className={classes.subtitle2}>
-              <Star className={classes.star} />
-              {film.rating}
-            </Typography>
             <Link href={`/films/${film._id}`} className={classes.button}>
               <Button>more</Button>
             </Link>
@@ -69,7 +64,7 @@ CatalogItems.propTypes = {
   loading: PropTypes.bool.isRequired,
   hasMore: PropTypes.bool.isRequired,
   handleNextPage: PropTypes.func.isRequired,
-  filteredItems: PropTypes.func.isRequired,
+  filteredItems: PropTypes.array.isRequired,
 };
 
 export default CatalogItems;

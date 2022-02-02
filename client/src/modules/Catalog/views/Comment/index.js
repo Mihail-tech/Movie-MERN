@@ -12,7 +12,7 @@ const Comment = props => {
       {comments.map((comment, index) => (
         <form>
           <div className={classes.comment}>
-            <Avatar  src={props.pic}  />
+            <Avatar  src={comment.pic} alt='avatar' />
             <Typography variant='h6' className={classes.username}>
               {comment.writer}:
             </Typography>
@@ -42,8 +42,8 @@ const Comment = props => {
 };
 
 Comment.propTypes = {
-  // comment: PropTypes.string.isRequired,
-  // comments: PropTypes.array.isRequired,
+  comment: PropTypes.string.isRequired,
+  comments: PropTypes.array.isRequired,
   handleComment: PropTypes.func.isRequired,
 };
 
